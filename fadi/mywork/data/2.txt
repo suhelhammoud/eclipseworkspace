@@ -1,0 +1,9 @@
+1:a b e
+2:b d
+3:b c
+4:a b d
+5:a c
+6:b c		 
+7:a c
+8:a b c e 
+9:a b c
