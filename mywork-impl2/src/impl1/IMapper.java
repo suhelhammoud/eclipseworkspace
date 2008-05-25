@@ -46,15 +46,11 @@ Mapper<IntWritable, SetWritable, SetWritable, IntWritable> {
 	public void map(IntWritable key, SetWritable values,
 			OutputCollector<SetWritable, IntWritable> output, Reporter reporter) throws IOException {
 		
-		long tic=D.tic();
-		List<SetWritable> list=fMap.getSubsets(values, 0, fMap.ITERATION);
-		long toc=D.toc(tic);
-		reporter.incrCounter(Count.count.TIME_FOR_SUBSETS, toc);
-		reporter.incrCounter(Count.count.Num_OF_SUBSETS, list.size());
 		
-		tic=D.tic();
-		for (SetWritable sw : list) {
-			output.collect(sw, one);
+		long tic=D.tic();
+		for (SetWritable sw : fMap.keySet()) {
+			if (values.contains(sw))
+				output.collect(sw, one);
 		}
 		reporter.incrCounter(Count.count.TIME_TO_COLLECT, D.toc(tic));
 	}

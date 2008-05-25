@@ -1,5 +1,7 @@
 package impl1;
 
+import init.Driver;
+
 import java.awt.ItemSelectable;
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -55,27 +57,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 	}
 
 
-	public static void out(OutputCollector<SetWritable,IntWritable> output,Integer[] arr,int index, int len,SetWritable last)
-	throws IOException{
-		if (len==1)
-			for (int i = index; i < arr.length; i++) {
-				last.add(arr[i]);
-				if(output==null)
-					System.out.println(last);
-				else
-					output.collect(last, new IntWritable(1));
-
-				last.remove(arr[i]);
-
-			}
-		else
-			for (int i = index; i < arr.length-len+1; i++) {
-				SetWritable newSet=new SetWritable(last);
-				newSet.add(arr[i]);
-				out(output,arr,i+1,len-1,newSet);
-			}
-	}
-
+	
 	
 	public static void subsets(Integer[] arr,int index, int len,SetWritable last,List<SetWritable> result){
 		if (len==1 ){
@@ -202,8 +184,8 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 		System.out.println("s2="+s2);
 	}
 
-	public boolean load(JobConf job){
-		return load(freqDir+"/"+(ITERATION-1) ,job);
+	public void load(JobConf job){
+		load(freqDir+"/"+(ITERATION-1) ,job);
 	}
 
 
@@ -219,7 +201,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 	}
 
 
-	public boolean load(String srcDir,JobConf job) {
+	public void load(String srcDir,JobConf job) {
 		//clear();
 		configure(job);
 		try {
@@ -227,10 +209,11 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 			Path srcPath=new Path(srcDir);
 			if (! fs.exists(srcPath)) {
 				log.error("No map file found");
-				return false;
+				return ;
 			}
 
 			Path[] paths=fs.listPaths(srcPath);
+			
 			for (int i = 0; i < paths.length; i++) {
 				SequenceFile.Reader reader = new SequenceFile.Reader(fs, paths[i], job);
 
@@ -242,17 +225,14 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 					
 				}
 				reader.close();
-				return true;
-			}			
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
-		}finally{return true;
 		}
 	}
 	
-	public static TreeSet<SetWritable> join(Set<SetWritable> lset){
-		TreeSet<SetWritable> result=new TreeSet<SetWritable>();
+	public static List<SetWritable> join(Set<SetWritable> lset){
+		List<SetWritable> result=new ArrayList<SetWritable>();
 		for (SetWritable iter1 : lset) {
 			for (SetWritable iter2 : lset) {
 				SetWritable mset=iter1.merg(iter2);
@@ -260,6 +240,67 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 			}
 		}
 		return result;
+	}
+	
+	public static TreeSet<SetWritable> prune(List<SetWritable> joinSet, Set<SetWritable> lset){
+		TreeSet<SetWritable> result=new TreeSet<SetWritable>();
+		for (SetWritable jItem : joinSet) {
+			List<SetWritable> subset_1=subset_remove_one(jItem);
+			boolean isInLi_1=true;
+			for (SetWritable subJItem : subset_1) {
+				if (! lset.contains(subJItem)){
+					isInLi_1=false;
+					break;
+				}
+			}
+			if (isInLi_1)
+				result.add(jItem);
+		}
+		return result;
+	}
+	
+	public static List<SetWritable> subset_remove_one(SetWritable st){
+		List<SetWritable> result=new ArrayList<SetWritable>();
+		for (Integer item : st) {
+			SetWritable ts=new SetWritable(st);
+			ts.remove(item);
+			result.add(ts);
+		}
+		return result;
+	}
+	
+	
+	public void save(String outDir,JobConf conf){
+		
+		try {
+			
+			FileSystem fs = FileSystem.get(conf);
+			Path outPath = new Path(outDir+"/part-00000");
+			SequenceFile.Writer writer = SequenceFile.createWriter(fs, conf, outPath, SetWritable.class, IntWritable.class);
+			try {				
+				for (Map.Entry<SetWritable, Integer> entry : entrySet()) {
+					writer.append(entry.getKey(), new IntWritable(entry.getValue()));
+				}
+			} finally {
+				writer.close();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+	
+	public void prepareNext(String outDir,JobConf conf){
+		ItemMap itemMap=new ItemMap();
+		//itemMap.putAll(this);
+		List<SetWritable> j=ItemMap.join(this.keySet());
+		TreeSet<SetWritable> c=ItemMap.prune(j, this.keySet());
+		int counter=0;
+		for (SetWritable sw : c) {
+			itemMap.put(sw, counter++);
+		}
+		itemMap.save(outDir, conf);
+		
 	}
 	
 
