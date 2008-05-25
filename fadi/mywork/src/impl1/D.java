@@ -14,8 +14,8 @@ public class D {
 
 	public static void main(String[] args) {
 
-		int totalSize=3196;
-		double rSupport=0.7;
+		int totalSize=1692082;
+		double rSupport=0.05;
 		double confidence=0.40;
 		int support=(int)(totalSize* rSupport);
 		System.out.println("min support ="+ support);
@@ -28,8 +28,10 @@ public class D {
 		Param param=new Param();
 		param.numOfMappers=2;
 		param.numOfReduces=1;
+		//TODO to be deleted later 
+		param=null;
 
-		//InputMapper.runJob("data/input_lined", "data/input", param);
+		InputMapper.runJob("data/input_lined", "data/input", param);
 
 
 		ZeroMapper.runJob("data/input", freqDir+"/1", support, param);
