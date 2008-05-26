@@ -280,8 +280,11 @@ def apriori(datafile, min_support_f, min_confidence, resultfile='result.txt'):
     for i in range(2,20):
         t=tic()
         L=load(dir_L+os.sep+str(i-1))
+    
         J=ap_join(L)
+        print 'Join',i,'=',len(J)
         C=ap_prune(J, L)
+        print 'candidate',i,'=',len(C)
         L_plus=ap_support_count(C, datafile, min_support)
         print 'L',i,': ',len(L_plus),' time:',toc(t),' form start:', toc(t_start)
         if len(L_plus)== 0: break
