@@ -80,20 +80,36 @@ public class Rl implements WritableComparable{
 	public int size(){
 		return left.size()+right.size();
 	}
+//	public int compareTo(Object o) {
+//	Rl rl=(Rl)o;
+//	float d=confidence()-rl.confidence();
+//	if(d !=0) return  (int)Math.signum(d);
+//	
+//	int diff=freq-rl.freq;
+//	if (diff != 0) return diff;
+//	
+//	diff = size()-rl.size();
+//	if (diff != 0)return diff;
+//	
+//	return left.compareTo(rl.left);
+//
+//}
+	//chenged for reversed sort
 	public int compareTo(Object o) {
-		Rl rl=(Rl)o;
-		float d=confidence()-rl.confidence();
-		if(d !=0) return  (int)Math.signum(d);
-		
-		int diff=freq-rl.freq;
-		if (diff != 0) return diff;
-		
-		diff = size()-rl.size();
-		if (diff != 0)return diff;
-		
-		return left.compareTo(rl.left);
+	Rl rl=(Rl)o;
+	float d=rl.confidence()-confidence();
+	if(d !=0) return  (int)Math.signum(d);
+	
+	int diff=rl.freq-freq;
+	if (diff != 0) return diff;
+	
+	diff = rl.size()-size();
+	if (diff != 0)return diff;
+	
+	return left.compareTo(rl.left);
 
-	}
+}
+
 	public void readFields(DataInput in) throws IOException {
 		// TODO Auto-generated method stub
 		left.readFields(in);

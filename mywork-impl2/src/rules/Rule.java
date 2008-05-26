@@ -54,7 +54,7 @@ public class Rule {
 	}
 	
 	public String toString(){
-		return toStringLeft()+"\t-->\t"+toStringRight()+":\t"+confidence+":\t"+freq;
+		return toStringLeft()+"\t-->\t"+toStringRight()+":\t"+confidence+":\t"+freqLeft+":\t"+freq;
 	}
 	public String toStringLeft(){
 		return MapTools.join(FS, left);
@@ -71,6 +71,7 @@ public class Rule {
 	public void out(OutputCollector<FloatWritable, Text> output)
 	throws IOException{
 		float rank=getRank();
+		System.out.println("rank="+rank);
 		//String outText=MapTools.join(FS, left)+"--->"+MapTools.join(FS, right)+":"+freqLeft+":"+confidence+":"+rSupport;
 		output.collect(new FloatWritable(rank), new Text(toString()));
 	}
@@ -87,10 +88,10 @@ public class Rule {
 		result*=1000;
 		result=(int)result;
 
-		float r3=1-(float)1/(left.length+right.length);
+		//float r3=1-(float)1/(left.length+right.length);
 
-		result+=r3;
-		return -result;
+		//result+=r3;
+		return result;
 	}
 	public static String complement(String[] items,Collection<String> c){
 		StringBuffer sb=new StringBuffer();

@@ -2,6 +2,7 @@ package impl1;
 
 import java.util.Date;
 
+import org.apache.hadoop.mapred.JobConf;
 import org.apache.log4j.Logger;
 
 
@@ -14,15 +15,16 @@ public class D {
 
 	public static void main(String[] args) {
 
-		int totalSize=3196;
-		double rSupport=0.7;
-		double confidence=0.40;
+		int totalSize=9;
+		double rSupport=0.0;
+		double confidence=0.00;
 		int support=(int)(totalSize* rSupport);
 		System.out.println("min support ="+ support);
 
 		//support=2;
 
 		String freqDir="data/freqs";
+		String candidtatesDir="data/candidates";
 
 		//get 
 		Param param=new Param();
@@ -34,13 +36,17 @@ public class D {
 
 		ZeroMapper.runJob("data/input", freqDir+"/1", support, param);
 
-		RemoveNotFrequentMapper.runJob("data/input","data/input_removed",freqDir, param);
+		//RemoveNotFrequentMapper.runJob("data/input","data/input_removed",freqDir, param);
 
+		
 		for(int i=2; ; i++){
-			int itemsLeft=IMapper.runJob("data/input_removed", "data/freqs" , i, support, param);
+			prepare(freqDir, candidtatesDir, i);
+			int itemsLeft=IMapper.runJob("data/input_removed", freqDir, candidtatesDir , i, support, param);
 			System.out.println("rows left "+itemsLeft );
 
 			if(itemsLeft < 1)break;
+			
+
 
 		}
 
@@ -50,7 +56,13 @@ public class D {
 
 	}
 
-
+	public static void prepare(String dataIn, String dataOut,int iteration){
+		JobConf conf=new JobConf();
+		ItemMap im=new ItemMap();
+		im.load(dataIn+"/"+(iteration-1), conf);
+		im.prepareNext(dataOut+"/"+iteration,conf );
+		
+	}
 	public static long tic(){
 		return new Date().getTime();
 	}

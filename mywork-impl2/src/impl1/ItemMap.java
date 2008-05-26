@@ -41,11 +41,16 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 	public  static int ITERATION;
 
 	String freqDir;
+	String candidtatesDir;
 
 	private static final IntWritable one=new IntWritable(1);
 
 	JobConf job;
 
+	public ItemMap(){
+		
+	}
+	
 	public void configure(JobConf conf) {
 		SUPPORT=conf.getInt("SUPPORT", -1);
 		ITERATION=conf.getInt("ITERATION", -1);
@@ -54,6 +59,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 			log.error("can't get the support or iteration value");
 		}
 		this.freqDir =conf.get("freqDir", "data/freqs");
+		this.candidtatesDir=conf.get("candidtatesDir","data/candidates");
 	}
 
 
@@ -121,14 +127,27 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 	}
 	public static void main(String[] args)throws Exception{
 
-		Integer[] arr={1,2,3,4,5,6};
+		Integer[] arr={1,2,3,5,6};
 		SetWritable sw=new SetWritable(Arrays.asList(arr));
-		for (Integer iter1 : sw) {
-			for (Integer iter2 : sw) {
-				if (iter1== iter2)continue;
-				System.out.println(""+iter1+ ", "+iter2);
-			}
+
+		ItemMap im=new ItemMap();
+		im.load("../mywork/data/freqs/2",new JobConf());
+		System.out.println(im.toString());
+		
+		for (SetWritable jitem : im.keySet()) {
+			if (sw.containsAll(jitem))
+				System.out.println("contains "+jitem.toString());
 		}
+
+		//		nested iteration
+//		Integer[] arr={1,2,3,4,5,6};
+//		SetWritable sw=new SetWritable(Arrays.asList(arr));
+//		for (Integer iter1 : sw) {
+//			for (Integer iter2 : sw) {
+//				if (iter1== iter2)continue;
+//				System.out.println(""+iter1+ ", "+iter2);
+//			}
+//		}
 //		sw.remove(1);
 //		Integer[] a2=sw.toArray(new Integer[0]);
 //		
@@ -185,7 +204,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 	}
 
 	public void load(JobConf job){
-		load(freqDir+"/"+(ITERATION-1) ,job);
+		load(candidtatesDir+"/"+ITERATION ,job);
 	}
 
 
@@ -215,6 +234,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 			Path[] paths=fs.listPaths(srcPath);
 			
 			for (int i = 0; i < paths.length; i++) {
+				log.info("path[i] "+paths[i].toString());
 				SequenceFile.Reader reader = new SequenceFile.Reader(fs, paths[i], job);
 
 				SetWritable key = new SetWritable();
