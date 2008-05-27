@@ -218,7 +218,7 @@ def ap_L1(datafile, min_support_f, data_size):
         sz=sz+1
         item=line.split()
         for i in item:
-            t=tuple(i)
+            t=tuple([i])
             if t in r:
                 r[t]=r[t]+1
             else:
@@ -269,11 +269,11 @@ def apriori(datafile, min_support_f, min_confidence, resultfile='result.txt'):
     t=tic()
     data_size=[]
     L=ap_L1(datafile, min_support_f, data_size)
-    print 'data_size',data_size 
+    print 'data_size\t',data_size 
     min_support=min_support_f * data_size[0]
-    print 'total data size :',data_size[0], ' , minimum support:',min_support
+    print 'total data size :\t',data_size[0], ' ,\tminimum support:\t',min_support
     
-    print 'L1: ',len(L),' time:',toc(t),' form start:', toc(t_start)
+    print 'L\t1:\t',len(L),'\ttime:\t',toc(t),'\tform start:\t', toc(t_start)
     
     dump(L, dir_L+os.sep+"1")
     
@@ -282,11 +282,11 @@ def apriori(datafile, min_support_f, min_confidence, resultfile='result.txt'):
         L=load(dir_L+os.sep+str(i-1))
     
         J=ap_join(L)
-        print 'Join',i,'=',len(J)
+        print 'Join\t',i,'\t=\t',len(J)
         C=ap_prune(J, L)
-        print 'candidate',i,'=',len(C)
+        print 'candidate\t',i,'\t=\t',len(C)
         L_plus=ap_support_count(C, datafile, min_support)
-        print 'L',i,': ',len(L_plus),' time:',toc(t),' form start:', toc(t_start)
+        print 'L\t',i,'\t:\t',len(L_plus),'\t time:\t',toc(t),'\t form start:\t', toc(t_start)
         if len(L_plus)== 0: break
         dump(L_plus, dir_L+os.sep+str(i))
         L=L_plus
