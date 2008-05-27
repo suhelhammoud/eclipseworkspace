@@ -75,7 +75,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 			}
 	}
 
-	
+
 	public static void subsets(Integer[] arr,int index, int len,SetWritable last,List<SetWritable> result){
 		if (len==1 ){
 			for (int i = index; i < arr.length; i++) {
@@ -91,20 +91,19 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 				ItemMap.subsets(arr,i+1,len-1,newSet,result);
 			} 
 	}
-	
+
 	public void getSubsets(Integer[] arr,int index, int len,SetWritable last,List<SetWritable> result){
+		if (  ! containsKey(last)) return;
 		if (len==1 ){
-			if (  ! containsKey(last)) return;
 			for (int i = index; i < arr.length; i++) {
 				SetWritable newSet=new SetWritable();
 				newSet.add(arr[i]);
 				if(! containsKey(newSet))continue;
 				newSet.addAll(last);
 				result.add(newSet);
-
 			}
 		}
-		else
+		else{
 			for (int i = index; i <  arr.length -len+1; i++) {
 				SetWritable newSet=new SetWritable();
 				newSet.add(arr[i]);
@@ -112,6 +111,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 				newSet.addAll(last);
 				getSubsets(arr,i+1,len-1,newSet,result);
 			} 
+		}
 	}
 	public static List<SetWritable> subsets(Integer[] arr, int index, int len){
 		List<SetWritable> result=new ArrayList<SetWritable>();
@@ -137,13 +137,12 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 		return result;
 	}
 	public static void main(String[] args)throws Exception{
+		Path src=new Path("data/freqs");
+		List<Path> paths=listAllPaths(src);
+		for (Path path : paths) {
+			System.out.println(path.toString());
+		}
 
-		Integer[] arr={1,2,3,4,5,6};
-		SetWritable sw=new SetWritable(Arrays.asList(arr));
-		sw.remove(1);
-		Integer[] a2=sw.toArray(new Integer[0]);
-		
-		System.out.println(Arrays.toString(a2));
 	}
 
 
@@ -212,6 +211,26 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 	}
 
 
+	public static List<Path> listAllPaths(Path srcPath){
+		List<Path> result=new ArrayList<Path>();
+		try {
+			FileSystem fs=FileSystem.get(new JobConf());
+			if( ! fs.exists(srcPath)){
+				log.error(" Path"+ srcPath.toString()+" not found");
+				return null;
+			}
+			Path[] paths=fs.listPaths(srcPath);
+			for (Path path : paths) {
+				if(fs.isFile(path))
+					result.add(path);
+				else 
+					result.addAll(listAllPaths(path));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public boolean load(String srcDir,JobConf job) {
 		//clear();
 		configure(job);
@@ -222,35 +241,29 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 				log.error("No map file found");
 				return false;
 			}
-
-			Path[] paths=fs.listPaths(srcPath);
-			for (int i = 0; i < paths.length; i++) {
-				SequenceFile.Reader reader = new SequenceFile.Reader(fs, paths[i], job);
+			List<Path> allPathes=listAllPaths(srcPath);
+			for (Path path : allPathes) {
+				SequenceFile.Reader reader = new SequenceFile.Reader(fs, path, job);
 
 				SetWritable key = new SetWritable();
 				IntWritable value = new IntWritable();
 				while (reader.next(key, value)) {
 
-					put(new SetWritable(key), value.get());
-					//TODO added this bit to map one single items
-					for (Integer itm : key) {
-						SetWritable aItem=new SetWritable();
-						aItem.add(itm);
-						if (containsKey(aItem))continue;
-						else put(aItem, -1);
-					}
+					//boolean isBefore=
+					Integer isBefor=put(new SetWritable(key), value.get());
+					//TODO check keys duplicates
+					if(isBefor != null)
+						log.error("Key "+ key.toString()+ " with value "+ value.toString() + "is in map before");
 				}
-				//TODO check this very important				
-				put(new SetWritable(), 0);//needed for IMapper.output()
 				reader.close();
-				return true;
-			}			
+			}
+			put(new SetWritable(), 0);//needed for IMapper.output()
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
-		}finally{return true;
 		}
-
+		return true;
 	}
 
 }
