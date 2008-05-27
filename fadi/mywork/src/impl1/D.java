@@ -14,9 +14,14 @@ public class D {
 
 	public static void main(String[] args) {
 
-		int totalSize=1692082;
-		double rSupport=0.05;
+		int totalSize=990002;
+		double rSupport=0.10;
 		double confidence=0.40;
+
+//		int totalSize=9;
+//		double rSupport=0.00;
+//		double confidence=0.00;
+
 		int support=(int)(totalSize* rSupport);
 		System.out.println("min support ="+ support);
 
@@ -31,15 +36,24 @@ public class D {
 		//TODO to be deleted later 
 		param=null;
 
-		InputMapper.runJob("data/input_lined", "data/input", param);
+		//InputMapper.runJob("data/input_lined", "data/input", param);
 
 
+		
+
+		long t_start=D.tic();
+		long t=D.tic();
 		ZeroMapper.runJob("data/input", freqDir+"/1", support, param);
+		System.out.println("ZerroMapper ,"+D.toc(t)+", "+D.toc(t_start));
 
+		t=D.tic();
 		RemoveNotFrequentMapper.runJob("data/input","data/input_removed",freqDir, param);
+		System.out.println("RemoveNotFrequentMapper ,"+D.toc(t)+", "+D.toc(t_start));
 
 		for(int i=2; ; i++){
+			t=D.tic();
 			int itemsLeft=IMapper.runJob("data/input_removed", "data/freqs" , i, support, param);
+			System.out.println("IMapper.runJob "+i+","+D.toc(t)+", "+D.toc(t_start));
 			System.out.println("rows left "+itemsLeft );
 
 			if(itemsLeft < 1)break;
