@@ -36,7 +36,7 @@ public class D {
 		//TODO to be deleted later 
 		param=null;
 
-		//InputMapper.runJob("data/input_lined", "data/input", param);
+		InputMapper.runJob("data/input_lined", "data/input", param);
 
 
 		
