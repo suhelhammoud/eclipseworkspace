@@ -1,4 +1,3 @@
-
 def tic(): 
     import time
     return time.time()
@@ -425,6 +424,7 @@ def expirement(datafile,min_support, max_support, confidence, delta, resultfile)
             print '\n\t',
 
         support=support-delta
+        
         
     return r
 
