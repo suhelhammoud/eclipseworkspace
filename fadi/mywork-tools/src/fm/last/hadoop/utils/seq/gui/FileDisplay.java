@@ -12,7 +12,7 @@ import javax.swing.border.EtchedBorder;
  * http://java.sun.com/docs/books/tutorial/uiswing/examples/dnd/index.html
  */
 public class FileDisplay extends JPanel implements ActionListener {
-    static String defaultdir="D:\\\\eclipse\\workspace\\mywork\\data";
+    static String defaultdir="..";
   private static final long serialVersionUID = -2073915390547402450L;
   private JFileChooser fileChooser;
   private JButton clearAllButton;
