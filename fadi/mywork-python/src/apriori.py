@@ -14,7 +14,7 @@ def removeall(path):
     if not os.path.isdir(path):return
     
     files=os.listdir(path)
-    print 'delete files', files
+    #print 'delete files', files
     for x in files:
         os.remove(path+ os.sep+x)
     os.rmdir(path)
@@ -226,7 +226,7 @@ def ap_L1(datafile, min_support_f, data_size):
     
     min_support=min_support_f * sz
     data_size.append(sz)
-    print 'Size=',sz, ' data_size=',data_size    
+    #print 'Size=',sz, ' data_size=',data_size    
     for k,freq in dict(r).items():
         if freq < min_support:
             del r[k]
@@ -260,36 +260,65 @@ def sort(dirName, outfile):
     
 def apriori(datafile, min_support_f, min_confidence, resultfile='result.txt'):
     import os
+    r={}
+    r['support']=min_support_f
+    r['confidence']=min_confidence
+    r['resultfile']=resultfile
+    r['datafile']=datafile
+    
     t_start=tic()
     #create dir_L directory
     dir_L='l'
     if os.path.exists(dir_L):removeall(dir_L)
     os.mkdir(dir_L)
 
-    t=tic()
     data_size=[]
+    t=tic()
     L=ap_L1(datafile, min_support_f, data_size)
+    min_support=min_support_f * data_size[0]    
+    info=(1,len(L),toc(t))
     print 'data_size\t',data_size 
-    min_support=min_support_f * data_size[0]
-    print 'total data size :\t',data_size[0], ' ,\tminimum support:\t',min_support
-    
-    print 'L\t1:\t',len(L),'\ttime:\t',toc(t),'\tform start:\t', toc(t_start)
-    
+    print 'total data size :\t',data_size[0], ' ,\tminimum support:\t',min_support    
+    print 'L\t 1 \t:\t',len(L),'\ttime:\t',toc(t),'\tform start:\t', toc(t_start)
+
+    r['data_size']=data_size
+    r['min_support']=min_support
+
+    t=tic()
     dump(L, dir_L+os.sep+"1")
-    
+    info=info+(toc(t),)
+    r['info']=[info]
+        
     for i in range(2,20):
+        
+        # i, len(L), toc, len(J),toc, len(C),toc, len(L_plus), toc(), toc(dump L_plus)
         t=tic()
         L=load(dir_L+os.sep+str(i-1))
-    
+        info=(len(L),toc(t))
+
+        t=tic()
         J=ap_join(L)
+        info=info + (len(J),toc(t))
+        
         print 'Join\t',i,'\t=\t',len(J)
+        t=tic()
         C=ap_prune(J, L)
+        info=info + (len(C),toc(t))
         print 'candidate\t',i,'\t=\t',len(C)
+
+        t=tic()
         L_plus=ap_support_count(C, datafile, min_support)
+        info=info + (len(L_plus),toc(t))        
         print 'L\t',i,'\t:\t',len(L_plus),'\t time:\t',toc(t),'\t form start:\t', toc(t_start)
+
         if len(L_plus)== 0: break
+
+        t=tic()
         dump(L_plus, dir_L+os.sep+str(i))
+        info=info + (toc(t),)        
+                
         L=L_plus
+        r['info'].append(info)
 
     #calculate confidence
     dir_C='c'
@@ -311,4 +340,92 @@ def apriori(datafile, min_support_f, min_confidence, resultfile='result.txt'):
     num_rules = sort(dir_C, resultfile)
     print 'Num of rules sorted',num_rules,' finish sorting rules at ', toc(t)
     print 'total time elapsed :', toc(t_start)
+
+    return r
+
+def apriori2(datafile, min_support_f, min_confidence, resultfile='result.txt'):
+    import os
+    r={}
+    r['support']=min_support_f
+    r['confidence']=min_confidence
+    r['resultfile']=resultfile
+    r['datafile']=datafile
+    
+    t_start=tic()
+    #create dir_L directory
+    dir_L='l'
+    if os.path.exists(dir_L):removeall(dir_L)
+    os.mkdir(dir_L)
+
+    data_size=[]
+    t=tic()
+    L=ap_L1(datafile, min_support_f, data_size)
+    
+    info=(1,len(L),toc(t))
+
+    min_support=min_support_f * data_size[0]
+    r['data_size']=data_size
+    r['min_support']=min_support
+
+    t=tic()
+    dump(L, dir_L+os.sep+"1")
+    info=info+(toc(t),)
+    #information=tuple(tuple(info))
+
+    information=tuple()
+    for i in range(2,20):
+        
+        # i, len(L), toc, len(J),toc, len(C),toc, len(L_plus), toc(), toc(dump L_plus)
+        t=tic()
+        L=load(dir_L+os.sep+str(i-1))
+        info2=(i,len(L),toc(t))
+
+        t=tic()
+        J=ap_join(L)
+        info2=info2 + (len(J),toc(t))
+        
+        t=tic()
+        C=ap_prune(J, L)
+        info2=info2 + (len(C),toc(t))
+
+        t=tic()
+        L_plus=ap_support_count(C, datafile, min_support)
+        info2=info2 + (len(L_plus),toc(t))        
+
+        if len(L_plus)== 0: break
+
+        t=tic()
+        dump(L_plus, dir_L+os.sep+str(i))
+        info2=info2 + (toc(t),)        
+                
+        L=L_plus
+        information=information+(tuple(info2),)
+        #print 'info2',info2
+        
+    r['info']=information
+    return r
+
+def expirement(datafile,min_support, max_support, confidence, delta, resultfile):
+    #i, len(L), toc, len(J),toc, len(C),toc, len(L_plus), toc(), toc(dump L_plus)
+    r=[]
+    support=max_support
+    print 'datafile\t min_support \t max_support \t confidence \t delta'
+    print datafile, min_support, max_support, confidence, delta
+
+    print    'support \t i \t len(L)\t toc \t len(J) \t toc \t len(C) \t toc \t len(L_plus) \t toc() \t toc(dump L_plus)'
+    while support >= min_support:
+        tr=apriori2(datafile, support, confidence, resultfile+'_'+str(support)+'_'+str(confidence)+'.result')
+        print str(support)+'\t',
+
+        info_list=tr['info']
+        #print info_list
+        for info in info_list:
+            for i in info:
+                print str(i),'\t',
+            print '\n\t',
+
+        support=support-delta
+        
+    return r
+
 
