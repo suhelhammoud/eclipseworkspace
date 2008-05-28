@@ -17,10 +17,6 @@ import org.apache.hadoop.mapred.SequenceFileOutputFormat;
 
 import utils.SetWritable;
 
-import init.Driver;
-import init.InitMapper;
-import init.InitReducer;
-import init.Driver.myCounters;
 
 import java.io.IOException;
 
@@ -34,7 +30,7 @@ Mapper<IntWritable, SetWritable, IntWritable, IntWritable> {
 	public void map(IntWritable key, SetWritable values,
 			OutputCollector<IntWritable, IntWritable> output, Reporter reporter) throws IOException {
 
-		reporter.incrCounter(Driver.myCounters .NUMBER_OF_ROWS , 1);
+		reporter.incrCounter(Count.count.NUMBER_OF_ROWS , 1);
 
 		for (Integer atomItem : values) {
 			k.set(atomItem);
@@ -80,11 +76,11 @@ Mapper<IntWritable, SetWritable, IntWritable, IntWritable> {
 			RunningJob rj= JobClient.runJob(conf);
 
 			Counters counters=rj.getCounters();
-			long c=counters.getCounter(myCounters.NUMBER_OF_ROWS );
+			long c=counters.getCounter(Count.count.NUMBER_OF_ROWS );
 			System.out.println("Counters "+c );
 
 
-			long itemsLeft=counters.getCounter(myCounters.ROWS_LEFT );
+			long itemsLeft=counters.getCounter(Count.count.Items_LEFT );
 			System.out.println("rows left "+itemsLeft );
 
 

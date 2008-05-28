@@ -62,7 +62,7 @@ Mapper<IntWritable, SetWritable, SetWritable, IntWritable> {
 		fMap=new ItemMap();
 		fMap.configure(conf);
 		fMap.load(conf);
-		log.info(fMap);
+		//log.info(fMap);
 	}
 
 	public static int runJob(String input,String freqDir, String candidtatesDir, int iteration,int support, Param param){

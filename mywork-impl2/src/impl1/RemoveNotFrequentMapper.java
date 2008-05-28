@@ -1,15 +1,9 @@
 package impl1;
 
-import init.Driver.myCounters;
-
 import java.io.IOException;
-
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Writable;
-import org.apache.hadoop.io.WritableComparable;
-import org.apache.hadoop.mapred.Counters;
 import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.MapReduceBase;
@@ -34,7 +28,8 @@ public class RemoveNotFrequentMapper extends MapReduceBase implements Mapper<Int
 		for (Integer atomic : values) {
 			one.clear();
 			one.add(atomic);
-			if( map.containsKey(one))sw.add(atomic);
+			if( map.containsKey(one)) 
+				sw.add(atomic);
 		}
 		if(sw.size() > 0)
 			output.collect(key, sw);
@@ -47,7 +42,8 @@ public class RemoveNotFrequentMapper extends MapReduceBase implements Mapper<Int
 		map=new ItemMap();
 		String freqDir=job.get("freqDir");
 		map.load(freqDir+"/1",job);
-		System.out.println("map fre1 ="+map.toString());
+	 
+		//System.out.println("map fre1 ="+map.toString());
 	}
 	
 	public static void runJob(String input,String output,String freqDir, Param param){

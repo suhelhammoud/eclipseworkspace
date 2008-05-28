@@ -1,7 +1,5 @@
 package utils;
 
-import init.FMap;
-import init.IMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class MapTools {
 
 //		}
 
-		testl();
+		
 	}
 
 	public static String join(String FS, String... args) {
@@ -116,27 +114,7 @@ public class MapTools {
 	}
 
 
-	public static void testl() {
-		String[]   arr={"1","2","3","4","5"};
-		String[] tas={ "", "1","3","4","5"};
-
-		//"1 2","1 3","2 3","1 4","2 3","2 4","3 4",	"1 2 3", "1 2 4", "2 3 4", "1 3 4"};
-		HashSet<String> set=new HashSet<String>(Arrays.asList(tas));
-		ArrayList<Integer> list=new ArrayList<Integer>();
-		//list.add(0);
-		//list.add(1);
-
-		boolean b=passPrune(set, arr, list, 3);
-		System.out.println("test passPrune: "+b);
-		try {
-
-			output(null,set,arr,list,0, 2);
-			FMap.out(null, set, arr, list, 0, 2);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+	
 	public static boolean passPrune(Set<String> set,String[] arr, List<Integer> list, int itm){
 		for (int i = 0; i < list.size(); i++) {
 			String ts=join(SEP, arr,list,i,itm);

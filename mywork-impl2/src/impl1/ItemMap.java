@@ -1,35 +1,22 @@
 package impl1;
 
-import init.Driver;
 
-import java.awt.ItemSelectable;
-import java.io.DataInput;
-import java.io.DataOutput;
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.SequenceFile;
-import org.apache.hadoop.io.SortedMapWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.VLongWritable;
 import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.log4j.Logger;
-
-import utils.MapTools;
 import utils.SetWritable;
 
 public class ItemMap extends TreeMap<SetWritable, Integer>{
@@ -310,7 +297,7 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 
 	}
 	
-	public void prepareNext(String outDir,JobConf conf){
+	public int prepareNext(String outDir,JobConf conf){
 		ItemMap itemMap=new ItemMap();
 		//itemMap.putAll(this);
 		List<SetWritable> j=ItemMap.join(this.keySet());
@@ -320,6 +307,8 @@ public class ItemMap extends TreeMap<SetWritable, Integer>{
 			itemMap.put(sw, counter++);
 		}
 		itemMap.save(outDir, conf);
+		return itemMap.size();
+		
 		
 	}
 	

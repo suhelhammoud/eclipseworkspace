@@ -1,7 +1,6 @@
 package impl1;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.OutputCollector;
@@ -10,9 +9,6 @@ import org.apache.hadoop.mapred.Reporter;
 import org.apache.log4j.Logger;
 
 import utils.SetWritable;
-
-import init.Driver;
-import init.IReducer;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -32,7 +28,7 @@ Reducer<IntWritable, IntWritable, SetWritable, IntWritable> {
 			sum+=values.next().get();
 		}
 		if(sum >= SUPPORT){
-		    reporter.incrCounter(Driver.myCounters .ROWS_LEFT , 1);
+		    reporter.incrCounter(Count.count.Items_LEFT , 1);
 		    SetWritable sw=new SetWritable();
 		    sw.add(key);
 			output.collect(sw, new IntWritable(sum));
