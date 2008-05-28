@@ -13,12 +13,13 @@ public class D {
 
 
 	public static void main(String[] args) {
-
-		int totalSize=990002;
-		double rSupport=0.01;
+		System.out.println("2 2 fixed2");
+		String jobname="2 2 fixed2 ";
+		int totalSize=10;
+		double rSupport=0.2;
 		double confidence=0.00;
 
-//		int totalSize=9;
+//		int totalSize=990002;
 //		double rSupport=0.00;
 //		double confidence=0.00;
 
@@ -31,10 +32,12 @@ public class D {
 
 		//get 
 		Param param=new Param();
+		param.jobName=jobname;
 		param.numOfMappers=2;
-		param.numOfReduces=1;
+		param.numOfReduces=2;
+		
 		//TODO to be deleted later 
-		param=null;
+		//param=null;
 
 		InputMapper.runJob("data/input_lined", "data/input", param);
 
@@ -47,12 +50,12 @@ public class D {
 		System.out.println("ZerroMapper ,"+D.toc(t)+", "+D.toc(t_start));
 
 		t=D.tic();
-		RemoveNotFrequentMapper.runJob("data/input","data/input_removed",freqDir, param);
-		System.out.println("RemoveNotFrequentMapper ,"+D.toc(t)+", "+D.toc(t_start));
+		//RemoveNotFrequentMapper.runJob("data/input","data/input_removed",freqDir, param);
+		//System.out.println("RemoveNotFrequentMapper ,"+D.toc(t)+", "+D.toc(t_start));
 
 		for(int i=2; ; i++){
 			t=D.tic();
-			int itemsLeft=IMapper.runJob("data/input_removed", "data/freqs" , i, support, param);
+			int itemsLeft=IMapper.runJob("data/input", "data/freqs" , i, support, param);
 			System.out.println("IMapper.runJob "+i+","+D.toc(t)+", "+D.toc(t_start));
 			System.out.println("rows left "+itemsLeft );
 
@@ -60,8 +63,8 @@ public class D {
 
 		}
 
-		RMapper.runJob("data/freqs/*", "data/rules", totalSize, (float)confidence, param);
-		RSortMapper.runJob("data/rules", "data/rules_sorted", param);
+		//RMapper.runJob("data/freqs/*", "data/rules", totalSize, (float)confidence, param);
+		//RSortMapper.runJob("data/rules", "data/rules_sorted", param);
 
 
 	}

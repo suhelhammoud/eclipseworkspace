@@ -47,7 +47,7 @@ public class RemoveNotFrequentMapper extends MapReduceBase implements Mapper<Int
 		map=new ItemMap();
 		String freqDir=job.get("freqDir");
 		map.load(freqDir+"/1",job);
-		System.out.println("map fre1 ="+map.toString());
+		//System.out.println("map fre1 ="+map.toString());
 	}
 	
 	public static void runJob(String input,String output,String freqDir, Param param){

@@ -45,6 +45,7 @@ Mapper<IntWritable, SetWritable, SetWritable, IntWritable> {
 	private static final IntWritable one=new IntWritable(1);
 	public void map(IntWritable key, SetWritable values,
 			OutputCollector<SetWritable, IntWritable> output, Reporter reporter) throws IOException {
+		//log.info("\nline: "+values.toString());
 		
 		long tic=D.tic();
 		List<SetWritable> list=fMap.getSubsets(values, 0, fMap.ITERATION);
@@ -66,6 +67,7 @@ Mapper<IntWritable, SetWritable, SetWritable, IntWritable> {
 		fMap=new ItemMap();
 		fMap.configure(conf);
 		fMap.load(conf);
+		//log.info("map "+fMap.toString());
 	}
 
 	public static int runJob(String input,String freqDir, int iteration,int support, Param param){
@@ -97,6 +99,8 @@ Mapper<IntWritable, SetWritable, SetWritable, IntWritable> {
 			conf.setInputFormat(SequenceFileInputFormat.class);
 
 			if (param != null){
+				conf.setJobName(param.jobName +" IMapper "+iteration);
+				
 				conf.setNumMapTasks(param.numOfMappers);
 				conf.setNumReduceTasks(param.numOfReduces);//TODO change it later
 			}

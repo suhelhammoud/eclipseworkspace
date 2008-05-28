@@ -72,8 +72,11 @@ Mapper<IntWritable, SetWritable, IntWritable, IntWritable> {
 			conf.setReducerClass(ZeroReducer.class);
 
 			if(param != null){
+				conf.setJobName(param.jobName +" ZeroMapper");
+
 				conf.setNumMapTasks(param.numOfMappers);
 				conf.setNumReduceTasks(param.numOfReduces);//TODO change it later
+				
 			}
 			
 
