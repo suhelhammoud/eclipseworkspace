@@ -15,8 +15,8 @@ public class D {
 	public static void main(String[] args) {
 
 		int totalSize=990002;
-		double rSupport=0.10;
-		double confidence=0.40;
+		double rSupport=0.01;
+		double confidence=0.00;
 
 //		int totalSize=9;
 //		double rSupport=0.00;
