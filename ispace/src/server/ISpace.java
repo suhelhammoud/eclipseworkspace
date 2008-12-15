@@ -241,23 +241,7 @@ public class ISpace extends Thread {
 	}
 	private ServerSocket dateServer;
 
-//	public static List<String> getServersFromFile(String fileName){
-//		List<String> result=new ArrayList<String>();
-//		try {
-//
-//			BufferedReader in= new BufferedReader(new FileReader(fileName));
-//			String s;
-//			while( (s=in.readLine()) != null)  {
-//				if(s.trim().startsWith("#"))continue;
-//				result.add(s.trim());
-//			}
-//			
-//			in.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return result;
-//	}
+
 
 	private int port;
 	
