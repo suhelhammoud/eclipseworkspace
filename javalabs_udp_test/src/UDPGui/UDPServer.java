@@ -22,7 +22,7 @@ public class UDPServer {
 		}
 	}
 	public static void main(String[] args) throws Exception{
-	 new UDPServer().run(7777,1024);
+	 new UDPServer().run(7777,512);
 		 // end of while
 	} // end of main
 } // end of UDPServer
