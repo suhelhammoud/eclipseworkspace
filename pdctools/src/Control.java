@@ -1,3 +1,5 @@
+
+import org.apache.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,6 +10,10 @@ import java.util.Map;
 
 
 public class Control {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(Control.class);
 
 	/**
 	 * @param args
@@ -24,7 +30,7 @@ public class Control {
 		}
 
 		for (String file : jobs) {
-			System.out.println("working with dir "+ file);
+			logger.info("working with dir "+ file);
 			String ebook="download/"+file+"/ebook.pdc";
 			String info="download/"+file+"/info.txt";
 			String jpg="download/"+file+"/jpg";
@@ -33,7 +39,7 @@ public class Control {
 			if(! new File(info).exists())continue;
 			if(new File(jpg).exists())continue;
 
-			System.out.println("scanning file "+file);
+			logger.info("scanning file "+file);
 			String currentDir="download/s"+file;
 			//File job=new File("scanning-"+file.getName());
 			new File("download/"+file).renameTo(new File(currentDir));
@@ -69,13 +75,10 @@ public class Control {
 
 	}
 	public static void main(String[] args) {
-
-		//scanning();
-		zipAndEmail();
-		
-
+		threadScanning(30);
+		threadZipAndEmail(30);
 	}
-	
+
 	public static void doZipAndEmail()throws Exception{
 		List<String> jobs=new ArrayList<String>();
 
@@ -87,7 +90,7 @@ public class Control {
 		}
 
 		for (String file : jobs) {
-			System.out.println("zipAndemail with dir "+ file);
+			logger.info("zipAndemail with dir "+ file);
 			//String ebook="download/"+file+"/ebook.pdc";
 			String info="download/"+file+"/info.txt";
 			String jpg="download/"+file+"/jpg";
@@ -96,7 +99,7 @@ public class Control {
 			if(! new File(info).exists())continue;
 			if(! new File(jpg).exists())continue;
 
-			System.out.println("zipAndemail ing  file "+file);
+			logger.info("zipAndemail ing  file "+file);
 			String currentDir="download/v"+file;
 			//File job=new File("scanning-"+file.getName());
 			new File("download/"+file).renameTo(new File(currentDir));
@@ -120,7 +123,7 @@ public class Control {
 				subject=infoMap.get("subject");
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.err.println("from  are not working for id:"+ infoMap.get("id"));
+				logger.error("from  are not working for id:"+ infoMap.get("id"));
 			}
 
 			boolean success=SimpleMail.zipAndSend(jpg, zip, from, subject, infoMap.toString());
@@ -133,43 +136,56 @@ public class Control {
 		}
 		// TODO Auto-gener		
 	}
-	public static void scanning() {
-		while(true){
+	public static void threadScanning(final int delay) {
 
-			System.out.println("try scanning available folders");
+		new Thread(){
+			@Override
+			public void run() {
+				while(true){
 
-			try {
-				doScanning();
+					logger.info("try scanning available folders");
 
-			} catch (Exception e) {
-				e.printStackTrace();
+					try {
+						doScanning();
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					try {
+						Thread.sleep(delay);
+					} catch (Exception e) {
+						logger.error("can't sleep");
+					}
+
+				}
 			}
-			try {
-				Thread.sleep(10000);
-			} catch (Exception e) {
-				System.err.println("can't sleep");
-			}
+		}.start();
 
-		}
 	}
-	public static void zipAndEmail() {
-		while(true){
+	public static void threadZipAndEmail(final int delay) {
+		new Thread(){
+			@Override
+			public void run() {
+				while(true){
 
-			System.out.println("try zip and email available folders");
+					logger.info("try zip and email available folders");
 
-			try {
-				doZipAndEmail();
+					try {
+						doZipAndEmail();
 
-			} catch (Exception e) {
-				e.printStackTrace();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					try {
+						Thread.sleep(delay);
+					} catch (Exception e) {
+						logger.error("zip can't sleep");
+					}
+
+				}
 			}
-			try {
-				Thread.sleep(10000);
-			} catch (Exception e) {
-				System.err.println("zip can't sleep");
-			}
+		}.start();
 
-		}
 	}
 	/**
 	 * 

@@ -1,3 +1,5 @@
+
+import org.apache.log4j.Logger;
 import java.security.Security;
 import java.util.List;
 import java.util.Properties;
@@ -8,6 +10,10 @@ import javax.activation.*;
 
 public class SimpleMail 
 {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(SimpleMail.class);
 
 	public synchronized void sendMail(String toEmail,String subject, String body, String sender,String fileAttachment) throws Exception 
 	{	
@@ -45,7 +51,7 @@ public class SimpleMail
 		MimeBodyPart messageBodyPart = new MimeBodyPart();
 
 		//fill message
-		messageBodyPart.setText("Hi");
+		messageBodyPart.setText(body);
 
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(messageBodyPart);
@@ -86,7 +92,7 @@ public class SimpleMail
 	}
 	public static boolean zipAndSend(String indir,String outdir,String toEmail,String subject,String body){
 		SimpleMail simpleMail = new SimpleMail();
-		List<String> zipAttachment=ZipFolderExample.zipAndSplit(indir, outdir, 1000000);
+		List<String> zipAttachment=ZipFolderExample.zipAndSplit(indir, outdir, 9000000);
 		if(zipAttachment.size()==0) return false;
 
 		System.out.println(zipAttachment);
