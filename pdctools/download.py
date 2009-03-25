@@ -150,7 +150,7 @@ def main():
         print 'login, search and downlaod '
         login_search_download("UNSEEN")
 
-        delay=60
+        delay=23
         print "Sleeping for  " + str(delay) + "  seconds..."
         sleep(delay)
 
