@@ -2,7 +2,7 @@ import email, getpass, imaplib, os
 from os.path import join
 from time import time, sleep
 download_dir = 'download' # directory where to save attachments (default: current)
-work_dir ='work'
+work_dir ='downloading'
 user = 'pdc.to.jpg@googlemail.com' #raw_input("Enter your GMail username:")
 pwd = 'yasintaha' #getpass.getpass("Enter your password: ")
 
