@@ -66,7 +66,7 @@ def login_search_download(criteria="UNSEEN"):
             continue
         #check from page to page
         if int(subject_arg[1])< 1 or int(subject_arg[1])> 600 \
-            or int(subject_arg[2])< subject_arg[1] or int(subject_arg[1])> 600:
+            or int(subject_arg[2])< int(subject_arg[1]) or int(subject_arg[2])> 600:
             print 'from page to page ranges is not ok'
             copy_and_delete(m,emailid,"others")
             continue            
