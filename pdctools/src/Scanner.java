@@ -42,7 +42,7 @@ public class Scanner {
 
 	private Robot robot;
 	//int fromPage,toPage,delay;
-	String pdcviewer="C:\\Program Files\\Lizard Safeguard PDF Viewer\\pdcviewer.exe";
+	static String pdcviewer="C:\\Program Files\\Lizard Safeguard PDF Viewer\\pdcviewer.exe";
 	static String ebook2="C:\\nadyelfikr\\ebook\\2.pdc";
 	static String outdir2="C:\\nadyelfikr\\images";
 
@@ -51,6 +51,11 @@ public class Scanner {
 
 	public Scanner() {
 		try {
+			if(! new File(pdcviewer).exists())
+				pdcviewer="D:/Program Files/Lizard Safeguard PDF Viewer/pdcviewer.exe";
+			if(! new File(pdcviewer).exists())
+				return;
+			
 			robot=new Robot();
 			robot.setAutoDelay(100);
 		}catch(Exception e){
