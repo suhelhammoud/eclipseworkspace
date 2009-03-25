@@ -1,6 +1,8 @@
 import email, getpass, imaplib, os
+from os.path import join
 from time import time, sleep
-detach_dir = 'download' # directory where to save attachments (default: current)
+download_dir = 'download' # directory where to save attachments (default: current)
+work_dir ='work'
 user = 'pdc.to.jpg@googlemail.com' #raw_input("Enter your GMail username:")
 pwd = 'yasintaha' #getpass.getpass("Enter your password: ")
 
@@ -9,6 +11,7 @@ def get_address(eml=""):
     eml=eml.strip().split("<")[1]
     eml=eml[:-1]
     return eml
+    
     
 def login_search_download(criteria="UNSEEN"):
     """return the mails id """
@@ -21,8 +24,9 @@ def login_search_download(criteria="UNSEEN"):
     resp, items = m.search(None,criteria) # you could filter using the IMAP rules here (check http://www.example-code.com/csharp/imap-search-critera.asp)
     items = items[0].split() # getting the mails id
 
-    
+   
     for emailid in items:
+        sleep(10)
         resp, data = m.fetch(emailid, "(RFC822)") # fetching the mail, "`(RFC822)`" means "get the whole stuff", but you can ask for headers only, etc
         email_body = data[0][1] # getting the mail content
         mail = email.message_from_string(email_body) # parsing the mail content to get a mail object
@@ -41,7 +45,7 @@ def login_search_download(criteria="UNSEEN"):
         line.append("from:"+get_address(mail["From"]))
         
         subject=mail["Subject"].lower().strip()
-        if not subject.startswith("scan"):
+        if not subject.startswith("ebook"):
             print 'not starts with scan'
             copy_and_delete(m,emailid,"others")
             continue
@@ -53,6 +57,8 @@ def login_search_download(criteria="UNSEEN"):
         line.extend(["fromPage:"+ subject_arg[1],"toPage:"+subject_arg[2] ])
         line.append("subject:"+subject)
         line.append("date:"+mail["Date"])
+
+        
 
         # we use walk to create a generator so we can iterate on the parts and forget about the recursive headach
         for part in mail.walk():
@@ -78,9 +84,8 @@ def login_search_download(criteria="UNSEEN"):
                 copy_and_delete(m,emailid,"others")
                 continue
             
-            save_dir=os.path.join(detach_dir,id)
-            os.mkdir(save_dir)
-            att_path = os.path.join(save_dir, "ebook.pdc")
+            os.mkdir(join(work_dir,id))
+            att_path = os.path.join(work_dir,id, "ebook.pdc")
             line.append ("fileName:"+filename)
             #Check if its already there
             if not os.path.isfile(att_path) :
@@ -93,17 +98,19 @@ def login_search_download(criteria="UNSEEN"):
         copy_and_delete(m,emailid,"pdc")
 
         #save info.txt
-        info_path=os.path.join(save_dir, "info.txt")
+        info_path=os.path.join(work_dir,id, "info.txt")
         f_info=open(info_path,"wb")
         f_info.write("\n".join(line))
         f_info.close()
         
-        os.rename(save_dir,os.path.join(detach_dir,"r"+id))
+        os.rename(join(work_dir,id),join(download_dir,id))
         #append to queue.txt
         f=open('control/download.txt','a')
         f.write("~".join(line)+"\n")
         f.close()
         
+        #exit loop after one iteration because of unknown error at email_body = data[0][1]
+        break
     
     
     m.close()
