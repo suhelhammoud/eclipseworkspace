@@ -43,9 +43,7 @@ public class Control {
 			String jpg="scanning/"+file+"/jpg";
 
 			//move to scanning dir
-			boolean b=new File(info).exists()
-						&& new File(ebook).exists() 
-						&& new File("download/"+file).renameTo(new File("scanning/"+file));						
+			boolean b=new File("download/"+file).renameTo(new File("scanning/"+file));
 			if(! b){
 				new File("download/"+file+"/error").mkdir();
 				continue;
@@ -94,8 +92,7 @@ public class Control {
 			String jpg="zipping/"+file+"/jpg";
 			String zip="zipping/"+file+"/zip";
 			//move to working dir
-			boolean b=new File(jpg).exists() 
-					 && new File("scanned/"+file).renameTo(new File("zipping/"+file));
+			boolean b=new File("scanned/"+file).renameTo(new File("zipping/"+file));
 			if(! b){
 				new File("scanned/"+file+"/error").mkdir();
 				continue;
@@ -136,10 +133,7 @@ public class Control {
 			String zip="emailing/"+file+"/zip";
 			
 			//move to working dir
-			 boolean b =new File(zip).exists() 
-			 		&& new File(info).exists()
-			 		&& new File("zipped/"+file).renameTo(new File("emailing/"+file));
-			 
+			 boolean b =new File("zipped/"+file).renameTo(new File("emailing/"+file));
 			if(! b  ){
 				new File("zipped/"+file+"/error").mkdir();
 				continue;
