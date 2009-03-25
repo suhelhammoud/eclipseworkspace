@@ -51,6 +51,7 @@ def login_search_download(criteria="UNSEEN"):
         line=[]
         id=str(int(time()))
         line.append("id:"+id)
+        
         line.append("from:"+get_address(mail["From"]))
         
         subject=mail["Subject"].lower().strip()
@@ -63,6 +64,12 @@ def login_search_download(criteria="UNSEEN"):
             print 'subject args less != 3'
             copy_and_delete(m,emailid,"others")
             continue
+        #check from page to page
+        if int(subject_arg[1])< 1 or int(subject_arg[1])> 600 \
+            or int(subject_arg[2])< subject_arg[1] or int(subject_arg[1])> 600:
+            print 'from page to page ranges is not ok'
+            copy_and_delete(m,emailid,"others")
+            continue            
         line.extend(["fromPage:"+ subject_arg[1],"toPage:"+subject_arg[2] ])
         line.append("subject:"+subject)
         line.append("date:"+mail["Date"])

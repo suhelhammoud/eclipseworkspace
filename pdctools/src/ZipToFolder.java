@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.util.zip.*;
 
-public class ZipFolderExample
+public class ZipToFolder
 {
 	//private static final long MAX_FILE_SIZE = 5000000; // Whatever size you want
 
@@ -33,7 +33,7 @@ public class ZipFolderExample
 			int part=0;
 			for (int i=0  ; i<files.length; i++){
 				if(currentSize > maxFileSize){
-					System.out.println("current size "+currentSize);
+					//System.out.println("current size "+currentSize);
 					currentSize=0;
 					if(out!=null){
 						out.flush();

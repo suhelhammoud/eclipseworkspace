@@ -1,10 +1,13 @@
 
+import org.apache.log4j.Logger;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Date;
@@ -23,7 +26,11 @@ import javax.swing.JOptionPane;
  * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
  * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
  */
-public class PdcConverter  {
+public class Scanner {
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger logger = Logger.getLogger(Scanner.class);
 
 	/**
 	 * 
@@ -42,34 +49,30 @@ public class PdcConverter  {
 	
 	
 
-	public PdcConverter() {
-
+	public Scanner() {
 		try {
 			robot=new Robot();
 			robot.setAutoDelay(100);
 		}catch(Exception e){
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-	}
-	public void delay(int delay){
-		robot.delay(delay);
 	}
 
 	public void altTab(){
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_TAB);
+		
 		robot.keyRelease(KeyEvent.VK_ALT);
-		robot.delay(1000);
-
 	}
 
-	public void escFullScreen(){
+	public void escapeFullScreen(){
 		robot.keyPress(KeyEvent.VK_ESCAPE);
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_F);
-
-		robot.delay(2000);
+		robot.delay(500);
+		
 		robot.keyRelease(KeyEvent.VK_ALT);
 	}
 
@@ -77,45 +80,49 @@ public class PdcConverter  {
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_B);
-
-		robot.delay(500);
-
+		robot.delay(200);
+		
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_9);
-
-		robot.delay(500);
+		robot.delay(200);
 
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_F);
-
-		robot.delay(500);
+		robot.delay(200);
 
 		robot.keyRelease(KeyEvent.VK_ALT);
 	}
 
 
 
+	private BufferedImage rotate(BufferedImage image) {
+		AffineTransform tx = new AffineTransform();
+//	    tx.scale(scalex, scaley);
+//	    tx.shear(shiftx, shifty);
+//	    tx.translate(x, y);
+	    tx.rotate(1.57079632679, image.getWidth()/2, image.getHeight()/2);
+	    
+	    AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+	    image = op.filter(image, null);
+	    return image;
+
+	}
 	public void captureImage(String outputDir,int[] a){
 		BufferedImage screencapture= robot.createScreenCapture(new Rectangle(a[0],a[1],a[2],a[3]));
+		//screencapture=rotate(screencapture);
 		long time=new Date().getTime();
 		// Save as JPEG
 		File file = new File(outputDir+"\\"+time+".jpg");
 		try {
 			ImageIO.write(screencapture, "jpg", file);
-
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
 
-	public void getScreenSize(){
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		System.out.println(dim.toString());
-
-	}
 
 	/**
 	 * 
@@ -142,8 +149,24 @@ public class PdcConverter  {
 				break;
 			}
 		}
-		result[2]=dim.width-2*result[0];
-		result[3]=dim.height-2*result[1];
+		//get x1
+		result[2]=dim.width-2*result[0]-2;
+//		for (int i = dim.width; i >= dim.width/2-1; i--) {
+//			if( !robot.getPixelColor(i, (int) dim.height/2).equals(c00)){
+//				result[2]=i;
+//				break;
+//			}
+//		}
+
+		//get y0
+//		result[3]=dim.height-2*result[1];
+for (int i = dim.height; i >= dim.height/2; i--) {
+			if( !robot.getPixelColor((int) dim.width/2, i).equals(c00)){
+				result[3]=i-2;
+				break;
+			}
+		}
+
 		return result;
 
 	}
@@ -157,7 +180,7 @@ public class PdcConverter  {
 
 
 
-	private Process openPdcFile(String ebook){
+	private Process openPdcFile(String pdcviewer, String ebook){
 		String txtCommand =pdcviewer+" "+ebook;
 		Process proc = null;
 		try {
@@ -213,23 +236,19 @@ public class PdcConverter  {
 
 	private boolean check(String filename) {
 		if(! new File(filename).exists()){
-			JOptionPane.showMessageDialog(null, "Folder "+ pdcviewer+" does not exist.");
+			logger.error( "Folder "+ filename+" does not exist.");
 			return false;
 		}
 		return true;
 
 	}
 	public boolean doWork(final String ebook,final String outdir,final int fromPage, final int toPage, final int delay) {
-
-		if(! check(ebook) || ! check(outdir))return false;
-		final Process proc=openPdcFile(ebook);
-
-
 		if(fromPage > toPage){
-			JOptionPane.showMessageDialog(null, "End page should be greater than start page.");
+			logger.error( "End page should be greater than start page.");
 			return false;
 		}
-
+		if(! check(ebook) || ! check(outdir))return false;
+		final Process proc=openPdcFile(pdcviewer, ebook);
 
 		try {
 			if (proc==null ){
@@ -237,10 +256,10 @@ public class PdcConverter  {
 				return false;
 			}
 
-			robot.delay(6000);
+			robot.delay(4000);
 
 			goToPage(fromPage);
-			robot.delay(3000);
+			robot.delay(300);
 
 			fullScreen();
 			robot.delay(delay);
@@ -251,16 +270,16 @@ public class PdcConverter  {
 				captureImage(outdir,boundries);
 				robot.delay(delay);
 				nextPage();
-				robot.delay(300);
+				//robot.delay(200);
 
 			}
 
-			escFullScreen();
+			escapeFullScreen();
 			proc.destroy();
 
 
 		} catch (Exception e) {
-			System.err.println("exception at work ");
+			logger.error("exception at work " +e.getMessage());
 			e.printStackTrace();
 			proc.destroy();
 			return false;
@@ -270,6 +289,6 @@ public class PdcConverter  {
 	}
 	
 	public static void main(String[] args) {
-		new PdcConverter().doWork(ebook2,outdir2,2, 5, 2000);
+		new Scanner().doWork(ebook2,outdir2,100, 140, 50);
 	}
 }

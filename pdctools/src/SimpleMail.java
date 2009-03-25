@@ -1,5 +1,7 @@
 
 import org.apache.log4j.Logger;
+
+import java.io.File;
 import java.security.Security;
 import java.util.List;
 import java.util.Properties;
@@ -18,6 +20,10 @@ public class SimpleMail
 	public synchronized void sendMail(String toEmail,String subject, String body, String sender,String fileAttachment) throws Exception 
 	{	
 
+		if(! new File(fileAttachment).exists()){
+			logger.error("no file attechmet found"+ new File(fileAttachment).getAbsolutePath());
+			return;
+		}
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
 		Properties props = new Properties();
@@ -60,7 +66,7 @@ public class SimpleMail
 		messageBodyPart = new MimeBodyPart();
 		DataSource source = new FileDataSource(fileAttachment);
 		messageBodyPart.setDataHandler(	new DataHandler(source));
-		messageBodyPart.setFileName(fileAttachment);
+		messageBodyPart.setFileName(new File(fileAttachment).getName());
 		multipart.addBodyPart(messageBodyPart);
 
 		// Put parts in message
@@ -83,7 +89,7 @@ public class SimpleMail
 	public static void main(String args[]) throws Exception
 	{
 		SimpleMail simpleMail = new SimpleMail();
-		List<String> zipAttachment=ZipFolderExample.zipAndSplit("data/in", "data/zip", 1000000);
+		List<String> zipAttachment=ZipToFolder.zipAndSplit("data/in", "data/zip", 1000000);
 		System.out.println(zipAttachment);
 		for (String attachment : zipAttachment) {
 			simpleMail.sendMail("a", "a", "pdc.to.jpg@gmail.com", "eepgssh@gmail.com",attachment);
@@ -92,7 +98,7 @@ public class SimpleMail
 	}
 	public static boolean zipAndSend(String indir,String outdir,String toEmail,String subject,String body){
 		SimpleMail simpleMail = new SimpleMail();
-		List<String> zipAttachment=ZipFolderExample.zipAndSplit(indir, outdir, 9000000);
+		List<String> zipAttachment=ZipToFolder.zipAndSplit(indir, outdir, 9000000);
 		if(zipAttachment.size()==0) return false;
 
 		System.out.println(zipAttachment);
