@@ -159,10 +159,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    #main()
     while 1:
         try:
-            #main()
+            main()
             pass
         except :
             print "exit python work"
