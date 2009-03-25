@@ -261,12 +261,13 @@ for (int i = dim.height; i >= dim.height/2; i--) {
 				return false;
 			}
 
-			robot.delay(4000);
+			robot.delay(6000);
 
 			goToPage(fromPage);
 			robot.delay(300);
 
 			fullScreen();
+			robot.delay(3000);
 			robot.delay(delay);
 
 			int[] boundries=getPageCoordinates();

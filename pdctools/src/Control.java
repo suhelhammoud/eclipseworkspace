@@ -310,7 +310,7 @@ public class Control {
 		return result.toString();
 	}
 	public static void main(String[] args) {
-		threadScanning(17000,500);
+		threadScanning(17000,1000);
 		threadZipping(13000);
 		threadEmailing(19000);	
 	}
