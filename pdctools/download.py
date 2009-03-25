@@ -150,7 +150,7 @@ def main():
         print 'login, search and downlaod '
         login_search_download("UNSEEN")
 
-        delay=10
+        delay=60
         print "Sleeping for  " + str(delay) + "  seconds..."
         sleep(delay)
 
@@ -159,7 +159,9 @@ def main():
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt:
-        pass
+    while 1:
+        try:
+            main()
+        except :
+            print "exit python work"
+            

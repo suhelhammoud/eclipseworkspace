@@ -216,75 +216,13 @@ public class Control {
 	}
 
 	public static void main(String[] args) {
-		//threadScanning(2000);
-		//threadZipping(5000);
-		//threadEmailing(3000);
-		try {
-			doEmailing();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		//threadZipAndEmail(3000);
+		threadScanning(19000);
+		threadZipping(13000);
+		threadEmailing(11000);
+		
 	}
 
-	public static void doZipAndEmail()throws Exception{
-		List<String> jobs=new ArrayList<String>();
-
-		String[] files=new File("download").list();
-		for (String file : files) {
-			if( new File(file).isFile() || ! file.startsWith("ur") )
-				continue;
-			jobs.add(file);
-		}
-
-		for (String file : jobs) {
-			logger.info("zipAndemail with dir "+ file);
-			//String ebook="download/"+file+"/ebook.pdc";
-			String info="download/"+file+"/info.txt";
-			String jpg="download/"+file+"/jpg";
-			String zip="download/"+file+"/zip";
-
-			if(! new File(info).exists())continue;
-			if(! new File(jpg).exists())continue;
-
-			logger.info("zipAndemail ing  file "+file);
-			String currentDir="download/v"+file;
-			//File job=new File("scanning-"+file.getName());
-			new File("download/"+file).renameTo(new File(currentDir));
-			Thread.sleep(10);
-
-			//ebook=currentDir+"/ebook.pdc";
-			info=currentDir+"/info.txt";
-			jpg=currentDir+"/jpg";
-			zip=currentDir+"/zipping";
-
-			if (new File(zip).exists() || new File(currentDir+"/zip").exists()){
-				System.err.println("another zip process in running");
-				return;
-			}
-			new File(zip).mkdir();
-			Map<String,String> infoMap=readInfoFile(info);
-			String from=null;
-			String subject=null;
-			try {
-				from=infoMap.get("from");
-				subject=infoMap.get("subject");
-			} catch (Exception e) {
-				e.printStackTrace();
-				logger.error("from  are not working for id:"+ infoMap.get("id"));
-			}
-
-
-			boolean success=SimpleMail.zipAndSend(jpg, zip, from, subject, infoMap.toString());
-			if (! success){
-				new File(currentDir).renameTo(new File("download/w"+file));
-			}else{
-				new File(zip).renameTo(new File(currentDir+"/zip"));
-				new File(currentDir).renameTo(new File("download/z"+file));
-			}
-		}
-		// TODO Auto-gener		
-	}
+	
 
 	public static void threadScanning(final int delay) {
 
@@ -358,31 +296,7 @@ public class Control {
 			}
 		}.start();
 	}
-	public static void threadZipAndEmail(final int delay) {
-		new Thread(){
-			@Override
-			public void run() {
-				while(true){
-
-					try {
-						Thread.sleep(delay);
-					} catch (Exception e) {
-						logger.error("zip can't sleep");
-					}
-					logger.info("try zip and email available folders");
-					try {
-						doZipAndEmail();
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-
-				}
-			}
-		}.start();
-
-	}
+	
 	/**
 	 * 
 		id:1237918332
