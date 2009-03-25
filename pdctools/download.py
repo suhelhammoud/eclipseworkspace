@@ -8,8 +8,11 @@ pwd = 'yasintaha' #getpass.getpass("Enter your password: ")
 
 
 def get_address(eml=""):
-    eml=eml.strip().split("<")[1]
-    eml=eml[:-1]
+    eml=eml.strip().split("<")
+    if len(eml)==1:
+        eml=eml[0][1:-1]
+    else:
+        eml=eml[1][:-1]
     return eml
     
     
@@ -28,7 +31,13 @@ def login_search_download(criteria="UNSEEN"):
     for emailid in items:
         sleep(10)
         resp, data = m.fetch(emailid, "(RFC822)") # fetching the mail, "`(RFC822)`" means "get the whole stuff", but you can ask for headers only, etc
-        email_body = data[0][1] # getting the mail content
+        email_body=[]
+        try:
+            email_body = data[0][1] # getting the mail content
+        except:
+            print 'error in email body '
+            return
+        
         mail = email.message_from_string(email_body) # parsing the mail content to get a mail object
 
         #Check if any attachments at all
@@ -46,7 +55,7 @@ def login_search_download(criteria="UNSEEN"):
         
         subject=mail["Subject"].lower().strip()
         if not subject.startswith("ebook"):
-            print 'not starts with scan'
+            print 'not starts with ebook'
             copy_and_delete(m,emailid,"others")
             continue
         subject_arg=subject.split("-")
