@@ -24,7 +24,7 @@ public class Control {
 	 * @param args
 	 */
 
-	public static void doScanning() throws Exception{
+	public static void doScanning(int pause) throws Exception{
 		List<String> jobs=new ArrayList<String>();
 
 		String[] files=new File("download").list();
@@ -35,30 +35,23 @@ public class Control {
 		}
 
 		for (String file : jobs) {
-			logger.info("working with dir "+ file);
-			//String working_dir="work/";
-			String ebook="work/"+file+"/ebook.pdc";
-			String info="work/"+file+"/info.txt";
-			String jpg="work/"+file+"/jpg";
+			
+			logger.info("scanning dir "+ file);
 
+			String ebook="scanning/"+file+"/ebook.pdc";
+			String info="scanning/"+file+"/info.txt";
+			String jpg="scanning/"+file+"/jpg";
 
-
-			logger.info("scanning file "+file);
-			//String currentDir="download/s"+file;
-			//File job=new File("scanning-"+file.getName());
-			//move to working dir
-			boolean b=new File("download/"+file).renameTo(new File("work/"+file));
+			//move to scanning dir
+			boolean b=new File(info).exists()
+						&& new File(ebook).exists() 
+						&& new File("download/"+file).renameTo(new File("scanning/"+file));						
 			if(! b){
 				new File("download/"+file+"/error").mkdir();
-				return;
-			}
-
-			if(! new File(ebook).exists())continue;
-			if(! new File(info).exists())continue;
-			//if(new File(jpg).exists())continue;
-
-
-
+				continue;
+			}//moving was successful
+			
+			
 			new File(jpg).mkdir();
 
 			Map<String,String> infoMap=readInfoFile(info);
@@ -71,18 +64,15 @@ public class Control {
 				System.err.println("fromPage or toPage are not working for id:"+ infoMap.get("id"));
 			}
 
-			boolean success=new Scanner().doWork(ebook,jpg,fromPage, toPage, 200);
-			if (! success){
-
-				b=new File("work/"+file).renameTo(new File("work/error_scan_"+file));
-				if(! b)new File("work/"+file+"/error").mkdir();
+			b =new Scanner().doWork(ebook,jpg,fromPage, toPage, pause);
+			if (! b){
+				continue;
 			}else{
 				String suffix="";
 				if ( new File("scanned/"+file).exists()) suffix="_"+System.nanoTime();
-				b=new File("work/"+file).renameTo(new File("scanned/"+file+suffix));
+				b=new File("scanning/"+file).renameTo(new File("scanned/"+file+suffix));
 				if(! b){
-					copyDirectory(new File("work/"+file),new File("scanned/"+file+suffix));
-					new File("work/"+file+"/error").mkdir();
+					copyDirectory(new File("scanning/"+file),new File("scanned/"+file+suffix));
 				}
 			}
 		}
@@ -100,47 +90,30 @@ public class Control {
 
 		for (String file : jobs) {
 			logger.info("zipping with dir "+ file);
-			//String working_dir="work/";
-			String ebook="work/"+file+"/ebook.pdc";
-			String info="work/"+file+"/info.txt";
-			String jpg="work/"+file+"/jpg";
-			String zip="work/"+file+"/zip";
 
-
-			//String currentDir="download/s"+file;
-			//File job=new File("scanning-"+file.getName());
+			String jpg="zipping/"+file+"/jpg";
+			String zip="zipping/"+file+"/zip";
 			//move to working dir
-			boolean b=new File("scanned/"+file).renameTo(new File("work/"+file));
+			boolean b=new File(jpg).exists() 
+					 && new File("scanned/"+file).renameTo(new File("zipping/"+file));
 			if(! b){
 				new File("scanned/"+file+"/error").mkdir();
-				return;
+				continue;
 			}
-
-			//if(! new File(ebook).exists())continue;
-			//if(! new File(info).exists())continue;
-			if(! new File(jpg).exists())continue;
-
 
 			List<String> zippedFiles=ZipToFolder.zipAndSplit(jpg, zip, 9000000);
 
 			if(zippedFiles.size() ==0){
 				logger.error("no file is zipped");
-				b=new File("work/"+file).renameTo(new File("work/error_zip_"+file));
-				if(! b)new File("work/"+file+"/error").mkdir();
-
+				continue;
 			}else{
 				String suffix="";
 				if ( new File("zipped/"+file).exists()) suffix="_"+System.nanoTime();
-
-
-				b =new File("work/"+file).renameTo(new File("zipped/"+file+suffix));
+				b =new File("zipping/"+file).renameTo(new File("zipped/"+file+suffix));
 
 				if(! b){
-					copyDirectory(new File("work/"+file),new File("zipped/"+file+suffix));
-					logger.error("could not move file "+file);
-					new File("work/"+file+"/error").mkdir();
+					copyDirectory(new File("zipping/"+file),new File("zipped/"+file+suffix));
 				}
-				logger.info("test");
 			}
 
 		}
@@ -158,73 +131,50 @@ public class Control {
 
 		for (String file : jobs) {
 			logger.info("emailing with dir "+ file);
-			//String working_dir="work/";
-			String info="work/"+file+"/info.txt";
-			String zip="work/"+file+"/zip";
 
-
-
+			String info="emailing/"+file+"/info.txt";
+			String zip="emailing/"+file+"/zip";
+			
 			//move to working dir
-			boolean b=new File("zipped/"+file).renameTo(new File("work/"+file));
-			if(! b || ! new File(zip).exists() || ! new File(info).exists()){
+			 boolean b =new File(zip).exists() 
+			 		&& new File(info).exists()
+			 		&& new File("zipped/"+file).renameTo(new File("emailing/"+file));
+			 
+			if(! b  ){
 				new File("zipped/"+file+"/error").mkdir();
-				return;
+				continue;
 			}
-
 
 			Map<String,String> infoMap=readInfoFile(info);
-			String fromEmail=null;
-			String subject=null;
-			try {
-				fromEmail=infoMap.get("from");
-				subject=infoMap.get("subject");
-			} catch (Exception e) {
-				e.printStackTrace();
-				logger.error("from  are not working for id:"+ infoMap.get("id"));
-				new File("work/"+file+"/error").mkdir();
-				return;
-			}
-
+			String fromEmail=infoMap.get("from");
+			String subject=infoMap.get("subject");
+			
 			String[] zippedFiles= new File(zip).list();
 			for (int i = 0; i < zippedFiles.length; i++) {
 				try {
 					String attachfile=zip+"/"+zippedFiles[i];
-					logger.info("attach file :"+ attachfile);
+					
 					new SimpleMail().sendMail(fromEmail, subject+" part "+ i,
-							printInfoMap(infoMap)+"zip part : "+ i,
-							"pdc.to.jpg@gmail.com",attachfile);
+												printInfoMap(infoMap)+"zip part : "+ i,
+												"pdc.to.jpg@gmail.com",attachfile);					
 				} catch (Exception e) {
 					e.printStackTrace();
-					new File("work/"+file+"/error").mkdir();
 					logger.error("exit emailing parts");
 					return;
 				}
-
 			}
 			String suffix="";
 			if ( new File("emailed/"+file).exists()) suffix="_"+System.nanoTime();
-			b =new File("work/"+file).renameTo(new File("emailed/"+file+suffix));
-
+			b =new File("emailing/"+file).renameTo(new File("emailed/"+file+suffix));
 
 			if(! b){
-				copyDirectory(new File("work/"+file),new File("emailed/"+file+suffix));
+				copyDirectory(new File("emailing/"+file),new File("emailed/"+file+suffix));
 				logger.error("could not move file "+file);
-				new File("work/"+file+"/error").mkdir();
 			}
-
 		}
 	}
 
-	public static void main(String[] args) {
-		threadScanning(19000);
-		threadZipping(13000);
-		threadEmailing(11000);
-		
-	}
-
-	
-
-	public static void threadScanning(final int delay) {
+	public static void threadScanning(final int delay, final int pause) {
 
 		new Thread(){
 			@Override
@@ -235,18 +185,12 @@ public class Control {
 					} catch (Exception e) {
 						logger.error("can't sleep");
 					}
-
-					logger.info("try scanning available folders");
-
 					try {
-						doScanning();
+						doScanning(pause);
 
 					} catch (Exception e) {
 						e.printStackTrace();
-
 					}
-
-
 				}
 			}
 		}.start();
@@ -263,7 +207,6 @@ public class Control {
 					} catch (Exception e) {
 						logger.error("can't sleep");
 					}
-					logger.info("try zipping available folders");
 					try {
 						doZipping();
 
@@ -285,7 +228,6 @@ public class Control {
 					} catch (Exception e) {
 						logger.error("can't sleep");
 					}
-					logger.info("try zipping available folders");
 					try {
 						doEmailing();
 
@@ -297,16 +239,7 @@ public class Control {
 		}.start();
 	}
 	
-	/**
-	 * 
-		id:1237918332
-		from:eepgssh@gmail.com
-		fromPage:3
-		toPage6
-		subject:scan-3-6
-		date:Tue, 24 Mar 2009 16:54:57 +0000
-		fileName:e.pdc
-	 */
+	
 	public static Map<String,String> readInfoFile(String filename){
 		Map<String,String> result=new HashMap<String, String>();
 		StringBuffer sb=new StringBuffer();
@@ -362,13 +295,7 @@ public class Control {
 		out.close();
 	}
 
-//id=1237988801,
-//	subject=ebook2-1-200,
-//	fromPage=1, 
-//	fileName=ebook (2).pdc,
-//	toPage=200, 
-//	from=eepgssh@gmail.com,
-//	date=Wed, 25 Mar 2009 13}
+
 	static String printInfoMap(Map<String,String> map){
 		StringBuffer result=new StringBuffer("\n    www.nadyelfikr.com\n");
 		result.append("\nid : "+map.get("id"));
@@ -382,5 +309,11 @@ public class Control {
 		
 		return result.toString();
 	}
+	public static void main(String[] args) {
+		threadScanning(17000,500);
+		threadZipping(13000);
+		threadEmailing(19000);	
+	}
+
 
 }
