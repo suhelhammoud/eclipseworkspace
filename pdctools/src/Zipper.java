@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.util.zip.*;
 
-public class ZipToFolder
+public class Zipper
 {
 	//private static final long MAX_FILE_SIZE = 5000000; // Whatever size you want
 

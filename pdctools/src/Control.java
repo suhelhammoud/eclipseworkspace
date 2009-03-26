@@ -103,7 +103,7 @@ public class Control {
 				continue;
 			}
 
-			List<String> zippedFiles=ZipToFolder.zipAndSplit(jpg, zip, 9000000);
+			List<String> zippedFiles=Zipper.zipAndSplit(jpg, zip, 9000000);
 
 			if(zippedFiles.size() ==0){
 				logger.error("no file is zipped");
@@ -153,7 +153,7 @@ public class Control {
 				try {
 					String attachfile=zip+"/"+zippedFiles[i];
 					
-					new SimpleMail().sendMail(fromEmail, subject+" part "+ i,
+					new Emailer().sendMail(fromEmail, subject+" part "+ i,
 												printInfoMap(infoMap)+"zip part : "+ i,
 												"pdc.to.jpg@gmail.com",attachfile);					
 				} catch (Exception e) {

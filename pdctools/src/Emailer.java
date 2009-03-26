@@ -10,12 +10,12 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 
-public class SimpleMail 
+public class Emailer 
 {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(SimpleMail.class);
+	private static final Logger logger = Logger.getLogger(Emailer.class);
 
 	public synchronized void sendMail(String toEmail,String subject, String body, String sender,String fileAttachment) throws Exception 
 	{	
@@ -41,7 +41,7 @@ public class SimpleMail
 				new javax.mail.Authenticator() 
 		{
 			protected PasswordAuthentication getPasswordAuthentication()
-			{ return new PasswordAuthentication("pdc.to.jpg@gmail.com","yasintaha");	}
+			{ return new PasswordAuthentication("pdc.to.jpg@gmail.com","");	}
 		});		
 
 		////suhel
@@ -88,8 +88,8 @@ public class SimpleMail
 
 	public static void main(String args[]) throws Exception
 	{
-		SimpleMail simpleMail = new SimpleMail();
-		List<String> zipAttachment=ZipToFolder.zipAndSplit("data/in", "data/zip", 1000000);
+		Emailer simpleMail = new Emailer();
+		List<String> zipAttachment=Zipper.zipAndSplit("data/in", "data/zip", 1000000);
 		System.out.println(zipAttachment);
 		for (String attachment : zipAttachment) {
 			simpleMail.sendMail("a", "a", "pdc.to.jpg@gmail.com", "eepgssh@gmail.com",attachment);
@@ -97,8 +97,8 @@ public class SimpleMail
 
 	}
 	public static boolean zipAndSend(String indir,String outdir,String toEmail,String subject,String body){
-		SimpleMail simpleMail = new SimpleMail();
-		List<String> zipAttachment=ZipToFolder.zipAndSplit(indir, outdir, 9000000);
+		Emailer simpleMail = new Emailer();
+		List<String> zipAttachment=Zipper.zipAndSplit(indir, outdir, 9000000);
 		if(zipAttachment.size()==0) return false;
 
 		System.out.println(zipAttachment);
