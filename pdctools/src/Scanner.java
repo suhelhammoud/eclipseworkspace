@@ -41,6 +41,7 @@ public class Scanner {
 
 
 	private Robot robot;
+	private boolean stop=false;
 	//int fromPage,toPage,delay;
 	static String pdcviewer="C:\\Program Files\\Lizard Safeguard PDF Viewer\\pdcviewer.exe";
 	static String ebook2="C:\\nadyelfikr\\ebook\\2.pdc";
@@ -247,6 +248,9 @@ for (int i = dim.height; i >= dim.height/2; i--) {
 		return true;
 
 	}
+	public void stop(){
+		stop=true;
+	}
 	public boolean doWork(final String ebook,final String outdir,final int fromPage, final int toPage, final int delay) {
 		if(fromPage > toPage){
 			logger.error( "End page should be greater than start page.");
@@ -263,6 +267,10 @@ for (int i = dim.height; i >= dim.height/2; i--) {
 
 			robot.delay(6000);
 
+			if(stop){
+				proc.destroy();
+				return false;
+			}
 			goToPage(fromPage);
 			robot.delay(300);
 
@@ -277,6 +285,10 @@ for (int i = dim.height; i >= dim.height/2; i--) {
 				robot.delay(delay);
 				nextPage();
 				//robot.delay(200);
+				if(stop){
+					proc.destroy();
+					return false;
+				}
 
 			}
 
