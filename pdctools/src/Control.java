@@ -31,11 +31,11 @@ public class Control {
 	/**
 	 * @param args
 	 */
-	
+
 	public static void initDirectories(){
 		String[] dirs ={"control","downloading","download",
-						"scanning","scanned","zipping","zipped",
-						"emailing","emailed"};
+				"scanning","scanned","zipping","zipped",
+				"emailing","emailed"};
 		for (String fileName : dirs) {
 			File file=new File(fileName);
 			if(! file.exists() || ! file.isDirectory())
@@ -54,7 +54,7 @@ public class Control {
 		}
 
 		for (String file : jobs) {
-			
+
 			logger.info("scanning dir "+ file);
 
 			String ebook="scanning/"+file+"/ebook.pdc";
@@ -67,8 +67,8 @@ public class Control {
 				new File("download/"+file+"/error").mkdir();
 				continue;
 			}//moving was successful
-			
-			
+
+
 			new File(jpg).mkdir();
 
 			Map<String,String> infoMap=readInfoFile(info);
@@ -150,9 +150,9 @@ public class Control {
 
 			String info="emailing/"+file+"/info.txt";
 			String zip="emailing/"+file+"/zip";
-			
+
 			//move to working dir
-			 boolean b =new File("zipped/"+file).renameTo(new File("emailing/"+file));
+			boolean b =new File("zipped/"+file).renameTo(new File("emailing/"+file));
 			if(! b  ){
 				new File("zipped/"+file+"/error").mkdir();
 				continue;
@@ -161,15 +161,15 @@ public class Control {
 			Map<String,String> infoMap=readInfoFile(info);
 			String fromEmail=infoMap.get("from");
 			String subject=infoMap.get("subject");
-			
+
 			String[] zippedFiles= new File(zip).list();
 			for (int i = 0; i < zippedFiles.length; i++) {
 				try {
 					String attachfile=zip+"/"+zippedFiles[i];
-					
+
 					new Emailer().sendMail(fromEmail, subject+" part "+ i,
-												printInfoMap(infoMap)+"zip part : "+ i,
-												"pdc.to.jpg@gmail.com",attachfile);					
+							printInfoMap(infoMap)+"zip part : "+ i,
+							"pdc.to.jpg@gmail.com",attachfile);					
 				} catch (Exception e) {
 					e.printStackTrace();
 					logger.error("exit emailing parts");
@@ -230,7 +230,7 @@ public class Control {
 			}
 		}.start();
 	}
-	
+
 	public static void threadEmailing(final int delay) {
 		new Thread(){
 			@Override
@@ -251,8 +251,8 @@ public class Control {
 			}
 		}.start();
 	}
-	
-	
+
+
 	public static Map<String,String> readInfoFile(String filename){
 		Map<String,String> result=new HashMap<String, String>();
 		StringBuffer sb=new StringBuffer();
@@ -265,7 +265,10 @@ public class Control {
 
 				String[] parts = s.trim().split(":");
 				//date is not working with this
-				result.put(parts[0].trim(), parts[1].trim());
+				if(parts.length>=2)
+					result.put(parts[0].trim(), parts[1].trim());
+				else
+					logger.info("error in parts "+ s);
 			}
 			in.close();
 		} catch (Exception e) {
@@ -319,7 +322,7 @@ public class Control {
 		result.append("\ndate received : "+map.get("date"));
 		result.append("\nebook file : "+map.get("fileName"));
 		result.append("\n");
-		
+
 		return result.toString();
 	}
 	public static void main(String[] args) {

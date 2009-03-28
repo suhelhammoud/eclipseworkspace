@@ -66,17 +66,24 @@ def info_all(base_dir):
 
  
 #print info_all(base_dir)
-
+import time
 while True:
-    #url = 'http://localhost:8080/submit'
-    url = 'http://nadyelfikr-net.appspot.com/submit'
-    values = {'msg' : info_all(base_dir)}
-    data = urllib.urlencode(values)
-    req = urllib2.Request(url, data)
-    response = urllib2.urlopen(req)
-    the_page = response.read()
-    print the_page
     sleep(6)
-    break
+    print 'info ',time.time()
 
+    try:
+        #url = 'http://localhost:8080/submit'
+        url = 'http://nadyelfikr-net.appspot.com/submit'
+        info=info_all(base_dir)
+        #print info
+        values = {'msg' : info}
+        data = urllib.urlencode(values)
+        req = urllib2.Request(url, data)
+        response = urllib2.urlopen(req)
+        the_page = response.read()
+        print the_page
+    
+    except :
+        print 'error'
+    
 
