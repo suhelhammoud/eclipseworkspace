@@ -318,7 +318,6 @@ public class Control {
 		result.append("\nsubject : "+map.get("subject"));
 		result.append("\nfrom page : "+map.get("fromPage"));
 		result.append("\nto page : "+map.get("toPage"));
-		result.append("\nto page : "+map.get("toPage"));
 		result.append("\ndate received : "+map.get("date"));
 		result.append("\nebook file : "+map.get("fileName"));
 		result.append("\n");
