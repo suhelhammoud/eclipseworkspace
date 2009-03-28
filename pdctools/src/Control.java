@@ -5,6 +5,9 @@
  * 
  */
 import org.apache.log4j.Logger;
+
+import sun.jkernel.DownloadManager;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +31,17 @@ public class Control {
 	/**
 	 * @param args
 	 */
+	
+	public static void initDirectories(){
+		String[] dirs ={"control","downloading","download",
+						"scanning","scanned","zipping","zipped",
+						"emailing","emailed"};
+		for (String fileName : dirs) {
+			File file=new File(fileName);
+			if(! file.exists() || ! file.isDirectory())
+				file.mkdir();	
+		}
+	}
 
 	public static void doScanning(int pause) throws Exception{
 		List<String> jobs=new ArrayList<String>();
@@ -309,6 +323,7 @@ public class Control {
 		return result.toString();
 	}
 	public static void main(String[] args) {
+		initDirectories();
 		threadScanning(17000,1000);
 		threadZipping(13000);
 		threadEmailing(19000);	
