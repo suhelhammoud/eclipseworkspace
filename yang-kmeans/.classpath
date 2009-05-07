@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/xmlenc-0.52.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/slf4j-api-1.4.3.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/jetty-5.1.4.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/commons-net-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/commons-cli-2.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/kfs-0.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/jets3t-0.6.0.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/commons-logging-api-1.0.4.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/lib/slf4j-log4j12-1.4.3.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/hadoop-0.18.3-tools.jar"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/hadoop-0.18.3-core.jar" sourcepath="/home/suhel/hadoop/src"/>
+	<classpathentry kind="lib" path="/home/suhel/hadoop/hadoop-0.18.3-ant.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
