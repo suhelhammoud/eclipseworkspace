@@ -44,8 +44,8 @@ public class Scanner {
 	private boolean stop=false;
 	//int fromPage,toPage,delay;
 	static String pdcviewer="C:\\Program Files\\Lizard Safeguard PDF Viewer\\pdcviewer.exe";
-	static String ebook2="C:\\nadyelfikr\\ebook\\2.pdc";
-	static String outdir2="C:\\nadyelfikr\\images";
+	static String ebook2="C:\\ebook\\2.pdc";
+	static String outdir2="C:\\images";
 
 	
 	

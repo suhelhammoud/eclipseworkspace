@@ -313,7 +313,7 @@ public class Control {
 
 
 	static String printInfoMap(Map<String,String> map){
-		StringBuffer result=new StringBuffer("\n    www.nadyelfikr.com\n");
+		StringBuffer result=new StringBuffer("\n    ***** \n");
 		result.append("\nid : "+map.get("id"));
 		result.append("\nsubject : "+map.get("subject"));
 		result.append("\nfrom page : "+map.get("fromPage"));

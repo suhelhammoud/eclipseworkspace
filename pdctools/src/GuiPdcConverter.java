@@ -249,7 +249,7 @@ public class GuiPdcConverter extends javax.swing.JFrame {
 					{
 						lblEbook = new JLabel();
 						pnlmain.add(lblEbook);
-						lblEbook.setText("C:\\nadyelfikr\\ebook\\ebook.pdc");
+						lblEbook.setText("C:\\ebook\\ebook.pdc");
 						lblEbook.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 						lblEbook.setBounds(12, 99, 273, 22);
 					}
@@ -268,7 +268,7 @@ public class GuiPdcConverter extends javax.swing.JFrame {
 					{
 						lblOutput = new JLabel();
 						pnlmain.add(lblOutput);
-						lblOutput.setText("C:\\nadyelfikr\\images");
+						lblOutput.setText("C:\\images");
 						lblOutput.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 						lblOutput.setBounds(12, 173, 272, 23);
 					}
@@ -280,7 +280,7 @@ public class GuiPdcConverter extends javax.swing.JFrame {
 					{
 						jTextArea1 = new JTextArea();
 						pnlAbout.add(jTextArea1);
-						jTextArea1.setText("         \u0642\u0631\u0623\u062a \u0644\u0643\n\n    \u0646\u0627\u062f\u064a \u0627\u0644\u0641\u0643\u0631 \u0627\u0644\u0639\u0631\u0628\u064a\n\n   www.nadyelfikr.com");
+						jTextArea1.setText(" ***** ");
 						jTextArea1.setOpaque(false);
 						jTextArea1.setBounds(56, 45, 191, 113);
 						jTextArea1.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
