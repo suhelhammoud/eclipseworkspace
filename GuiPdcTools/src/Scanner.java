@@ -35,11 +35,11 @@ public class Scanner {
 	private boolean stop=false;
 	//int fromPage,toPage,delay;
 	static String pdcviewer="C:\\Program Files\\Lizard Safeguard PDF Viewer\\pdcviewer.exe";
-	static String ebook2="C:\\nadyelfikr\\ebook\\2.pdc";
-	static String outdir2="C:\\nadyelfikr\\images";
+	static String ebook2="C:\\ebook\\2.pdc";
+	static String outdir2="C:\\images";
 
-	
-	
+
+
 
 	public Scanner() {
 		try {
@@ -47,7 +47,7 @@ public class Scanner {
 				pdcviewer="D:/Program Files/Lizard Safeguard PDF Viewer/pdcviewer.exe";
 			if(! new File(pdcviewer).exists())
 				return;
-			
+
 			robot=new Robot();
 			robot.setAutoDelay(100);
 		}catch(Exception e){
@@ -58,7 +58,7 @@ public class Scanner {
 	public void altTab(){
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_TAB);
-		
+
 		robot.keyRelease(KeyEvent.VK_ALT);
 	}
 
@@ -68,7 +68,7 @@ public class Scanner {
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_F);
 		robot.delay(500);
-		
+
 		robot.keyRelease(KeyEvent.VK_ALT);
 	}
 
@@ -77,7 +77,7 @@ public class Scanner {
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_B);
 		robot.delay(200);
-		
+
 		robot.keyPress(KeyEvent.VK_ALT);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyPress(KeyEvent.VK_9);
@@ -134,16 +134,16 @@ public class Scanner {
 		}
 		//get x1
 		result[2]=dim.width-2*result[0]-2;
-//		for (int i = dim.width; i >= dim.width/2-1; i--) {
-//			if( !robot.getPixelColor(i, (int) dim.height/2).equals(c00)){
-//				result[2]=i;
-//				break;
-//			}
-//		}
+		//		for (int i = dim.width; i >= dim.width/2-1; i--) {
+		//			if( !robot.getPixelColor(i, (int) dim.height/2).equals(c00)){
+		//				result[2]=i;
+		//				break;
+		//			}
+		//		}
 
 		//get y0
-//		result[3]=dim.height-2*result[1];
-for (int i = dim.height; i >= dim.height/2; i--) {
+		//		result[3]=dim.height-2*result[1];
+		for (int i = dim.height; i >= dim.height/2; i--) {
 			if( !robot.getPixelColor((int) dim.width/2, i).equals(c00)){
 				result[3]=i-2;
 				break;
@@ -279,7 +279,7 @@ for (int i = dim.height; i >= dim.height/2; i--) {
 		return true;
 
 	}
-	
+
 	public static void main(String[] args) {
 		new Scanner().doWork(ebook2,outdir2,100, 140, 50);
 	}
