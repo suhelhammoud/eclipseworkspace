@@ -1,0 +1,27 @@
+{
+"jobName":"job-100t",
+"numberOfMappers":190000,
+"numberOfReducers":10000,
+
+"ioSortMb":400.0,
+"ioSortFactor":100,
+"ioSortSpillPercent":0.85,
+"ioSortRecordPercent":0.4,
+
+"mapReduceParallelCopies":20,
+"mapredJobShuffleInputBufferPercent":0.80,
+"mapredJobShuffleMergePercent":0.80,
+"mapredInmemMergeThreshold":10000,
+"mapredChildJavaOpts":200.0,
+
+"memoryLimit":130514944.0,
+	      
+
+"data":{  "size":100000000000000.0,"records":1000000000000.0},
+	
+"replication":1,
+
+"algorithm":{ "mapCost":{{mapCost}}, "mapRecords":1.0, "mapOutAvRecordSize":100.0,
+
+		"reduceCost":{{reduceCost}}, "reduceRecords":1.0, "reduceOutAvRecordSize":100.0}
+}

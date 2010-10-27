@@ -1,0 +1,20 @@
+[
+{
+'jobName':'template-ready',
+'baudRate':1000000000.0,
+'speed':125000000.0,
+'read': 200000000.0,
+'write':150000000.0,
+'topBaudRate': 1000000000.0,
+
+
+
+'maxIM':10000000.0,
+'deltaCPU':125000000.0,
+'deltaHDD':100000000.0,
+'deltaNEt':100000000.0,
+
+'mapCost':1.0,
+'reduceCost':1.0
+}
+]

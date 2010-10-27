@@ -1,0 +1,44 @@
+Initialising...
+
+ INFO HTopology:109 - initGridSim- Initializing GridSim package
+Initialising...
+
+ INFO HSimulator:74 - initSimulator- creat new Result dir /home/hadoop/Desktop/profile/mrsim.benchmark.nb/results/152-14-Oct-2010 18:38:20
+
+ INFO HJobTracker:354 - createEntities- create topology
+
+ INFO HJobTracker:358 - createEntities- config.Heartbeat:1.0,	read topology.getName:rack 0
+
+ INFO HJobTracker:362 - createEntities- init NetEnd from rack
+
+ INFO HJobTracker:403 - createEntities- initial idle Mapper tasks 360
+
+ INFO HJobTracker:404 - createEntities- initial idle Reducer tasks 120
+
+ INFO HUser:31 - <init>- User created
+
+ INFO MRSimTest1:83 - test_start- sim started
+
+ INFO MRSimTest1:286 - main- going to run test
+
+ INFO MRSimTest1:305 - main- done
+
+ INFO HSimulator:128 - startSimulator- Starting simulator version
+
+ INFO HSimulator:139 - startSimulator- trace level200
+
+ INFO HSimulator:142 - startSimulator- graph file: /home/hadoop/Desktop/profile/mrsim.benchmark.nb/results/152-14-Oct-2010 18:38:20/graph.sjg
+
+ INFO HSimulator:146 - startSimulator- going to call Sim_system.run()
+Entities started.
+
+ INFO HJobTracker:145 - body- start entity
+--total--3540
+
+ INFO HUser:48 - body- total receives 3540 clock:2.0
+
+ INFO HUser:56 - body- MRSIMTest submit test start time 20
+
+ INFO HUser:59 - body- total receives 3540/ 35400 clock:2.0
+
+ INFO HUser:66 - body- enter the loop

@@ -1,0 +1,48 @@
+{
+	"jobName":"201005041935_0040-540,000-a",
+	
+	"numberOfMappers":60,
+	"numberOfReducers":1,
+	
+	"replication":3,
+
+	"data":{ "name":"data_1", "size":159542255.0,
+		 "records":540000.0, "replica":["m1","m2"]},
+	
+
+	"inputSplits":[],
+		
+	"outputSplits":[],
+	
+	
+	"useCombiner":false,
+	
+	"useCompression":false,
+
+	
+	
+	"memoryLimit":141387360.0,
+
+	"algorithm":{
+		"mapCost":10000.0,
+		"mapRecords":50,
+		"mapOutAvRecordSize":12.0,
+		
+		"combineCost":50.0,
+		"combineSize":1.0,
+		"combineRecords":1.0,
+
+		"combineGroups":1.0,
+		"combineOutAvRecordSize":1.0,
+		"combineOutAvRecordSize_add":0.0,
+	
+		
+		"reduceCost":50.0,
+		"reduceRecords":3.704E-03,
+		"reduceOutAvRecordSize":9.889,
+		
+		"compressionCost":1.0,
+		"uncompressionCost":1.0,
+		"compressionSize":1.0
+}
+}

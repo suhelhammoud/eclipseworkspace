@@ -1,0 +1,18 @@
+Initialising...
+
+ INFO HTopology:115 - initGridSim- Initializing GridSim package
+Initialising...
+
+ INFO HSimulator:76 - initSimulator- creat new Result dir /home/hadoop/workspace/work/mrsim/results/91-12-Oct-2010 23:38:46
+
+ INFO HJobTracker:360 - createEntities- create topology
+
+ INFO HJobTracker:363 - createEntities- config.Heartbeat:1.0,	read topology.getName:rack 0
+
+ INFO HJobTracker:367 - createEntities- init NetEnd from rack
+
+ INFO HJobTracker:418 - createEntities- initial idle Mapper tasks 240
+
+ INFO HJobTracker:419 - createEntities- initial idle Reducer tasks 80
+
+ INFO HUser:28 - <init>- User created

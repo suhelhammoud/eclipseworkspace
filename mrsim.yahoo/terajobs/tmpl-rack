@@ -1,0 +1,554 @@
+{ "machines" : [
+	
+	{ 
+            "hostName" : 1,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" :2,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" :3,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" :4,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 5,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 6,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 7,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 8,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 9,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 10,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},
+{ 
+            "hostName" : 11,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 12,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 13,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 14,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 15,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 16,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 17,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 18,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 19,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 20,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},
+{ 
+            "hostName" : 21,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 22,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 23,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 24,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 25,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 26,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 27,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 28,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 29,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 30,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},
+
+{ 
+            "hostName" : 31,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 32,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 33,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 34,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 35,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 36,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 37,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 38,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},{ 
+            "hostName" : 39,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	},
+
+	{ 
+            "hostName" : 40,
+	    "baudRate" :{{baudRate}},
+            "cpu" : { "cores" : 8,
+                "speed" : {{speed}}
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : {{read}},
+                "seekTime" : 1.0,
+                "write" : {{write}}
+              },
+            "maxMapper" : {{maxMapper}},
+            "maxReducer" : {{maxReducer}}
+    	}
+
+	
+	
+
+ 	],
+	
+
+      "heartbeat":1.0,
+      "propDelay":1.0,
+      "router":"topRourter",
+	
+      "baudRate":{{topBaudRate}},
+      "numOfRacks":{{numOfRacks}},
+      "maxIM":{{maxIM}},
+      "deltaCPU":{{deltaCPU}},
+      "deltaHDD":{{deltaHDD}},
+      "deltaNEt":{{deltaNEt}},
+
+
+      "hlogLevel":"result"
+      
+    }
+    
+   
+

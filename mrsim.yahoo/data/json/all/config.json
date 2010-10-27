@@ -1,0 +1,14 @@
+{	
+	"maxIM":150,
+	"propDelay":2.0,
+	"heartbeat":1.0,
+	"maxSplitSize":67108864.0,
+	"deltaCPU":100.0,
+	"deltaHDD":100.0,
+	
+	
+	"map":{
+		"mapredTaskMaxvmem":100.00,
+		"someList":[1,2,4]
+	}
+}

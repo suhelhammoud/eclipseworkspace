@@ -1,0 +1,554 @@
+{ "machines" : [
+	
+	{ 
+            "hostName" : 1,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" :2,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" :3,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" :4,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 5,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 6,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 7,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 8,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 9,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 10,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},
+{ 
+            "hostName" : 11,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 12,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 13,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 14,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 15,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 16,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 17,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 18,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 19,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 20,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},
+{ 
+            "hostName" : 21,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 22,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 23,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 24,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 25,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 26,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 27,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 28,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 29,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 30,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},
+
+{ 
+            "hostName" : 31,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 32,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 33,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 34,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 35,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 36,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 37,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 38,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},{ 
+            "hostName" : 39,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	},
+
+	{ 
+            "hostName" : 40,
+	    "baudRate" :1000000000.0,
+            "cpu" : { "cores" : 8,
+                "speed" : 125000000.0
+              },
+            "hardDisk" : { "capacity" : 40000.0,
+                "read" : 200000000.0,
+                "seekTime" : 1.0,
+                "write" : 150000000.0
+              },
+            "maxMapper" : 4,
+            "maxReducer" : 2
+    	}
+
+	
+	
+
+ 	],
+	
+
+      "heartbeat":1.0,
+      "propDelay":1.0,
+      "router":"topRourter",
+	
+      "baudRate":1000000000.0,
+      "numOfRacks":86.3,
+      "maxIM":10000000.0,
+      "deltaCPU":125000000.0,
+      "deltaHDD":100000000.0,
+      "deltaNEt":100000000.0,
+
+
+      "hlogLevel":"result"
+      
+    }
+    
+   
+

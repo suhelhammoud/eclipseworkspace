@@ -1,0 +1,26 @@
+{
+"jobName":"job-500g",
+"numberOfMappers":8000,
+"numberOfReducers":2600,
+
+"ioSortMb":800.0,
+"ioSortFactor":400,
+"ioSortSpillPercent":0.95,
+"ioSortRecordPercent":0.2,
+
+"mapReduceParallelCopies":20,
+"mapredJobShuffleInputBufferPercent":0.95,
+"mapredJobShuffleMergePercent":0.95,
+"mapredInmemMergeThreshold":10000,
+"mapredChildJavaOpts":1024,
+
+"memoryLimit":954466304.0,
+
+"data":{ "size":500000000000.0,"records":5000000000.0},
+	
+"replication":1,
+
+"algorithm":{ "mapCost":1.0, "mapRecords":1.0, "mapOutAvRecordSize":100.0,
+
+		"reduceCost":1.0, "reduceRecords":1.0, "reduceOutAvRecordSize":100.0}
+}
